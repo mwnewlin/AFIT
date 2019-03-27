@@ -1,0 +1,154 @@
+----- Otter 3.2, August 2001 -----
+The process was started by ??? on ???,
+Sun Feb 24 14:11:40 2019
+The command was "otter.exe".
+
+set(ur_res).
+set(hyper_res).
+
+formula_list(usable).
+end_of_list.
+
+-------> usable clausifies to:
+
+list(usable).
+end_of_list.
+
+formula_list(sos).
+-Octorock(G).
+all x (-(IronKnuckle(x)&Magic(x))).
+Octorock(Z).
+Sword(L)& -Poe(L).
+Bow(Z).
+Magic(G).
+Poe(G).
+IronKnuckle(L).
+-(Bow(Z)&Octorock(Z)&Poe(G)&Magic(G)&Sword(L)&IronKnuckle(L)).
+end_of_list.
+
+-------> sos clausifies to:
+
+list(sos).
+1 [] -Octorock(G).
+2 [] -IronKnuckle(x)| -Magic(x).
+3 [] Octorock(Z).
+4 [] Sword(L).
+5 [] -Poe(L).
+6 [] Bow(Z).
+7 [] Magic(G).
+8 [] Poe(G).
+9 [] IronKnuckle(L).
+10 [] -Bow(Z)| -Octorock(Z)| -Poe(G)| -Magic(G)| -Sword(L)| -IronKnuckle(L).
+end_of_list.
+
+======= end of input processing =======
+
+=========== start of search ===========
+
+given clause #1: (wt=2) 1 [] -Octorock(G).
+
+given clause #2: (wt=2) 3 [] Octorock(Z).
+
+given clause #3: (wt=2) 4 [] Sword(L).
+
+given clause #4: (wt=2) 5 [] -Poe(L).
+
+given clause #5: (wt=2) 6 [] Bow(Z).
+
+given clause #6: (wt=2) 7 [] Magic(G).
+
+given clause #7: (wt=2) 8 [] Poe(G).
+
+given clause #8: (wt=2) 9 [] IronKnuckle(L).
+
+given clause #9: (wt=4) 2 [] -IronKnuckle(x)| -Magic(x).
+** KEPT (pick-wt=2): 11 [ur,2,7] -IronKnuckle(G).
+** KEPT (pick-wt=2): 12 [ur,2,9] -Magic(L).
+
+given clause #10: (wt=2) 11 [ur,2,7] -IronKnuckle(G).
+
+given clause #11: (wt=2) 12 [ur,2,9] -Magic(L).
+
+given clause #12: (wt=12) 10 [] -Bow(Z)| -Octorock(Z)| -Poe(G)| -Magic(G)| -Sword(L)| -IronKnuckle(L).
+** KEPT (pick-wt=0): 13 [hyper,10,6,3,8,7,4,9] $F.
+
+-----> EMPTY CLAUSE at   0.00 sec ----> 13 [hyper,10,6,3,8,7,4,9] $F.
+
+Length of proof is 0.  Level of proof is 0.
+
+---------------- PROOF ----------------
+
+3 [] Octorock(Z).
+4 [] Sword(L).
+6 [] Bow(Z).
+7 [] Magic(G).
+8 [] Poe(G).
+9 [] IronKnuckle(L).
+10 [] -Bow(Z)| -Octorock(Z)| -Poe(G)| -Magic(G)| -Sword(L)| -IronKnuckle(L).
+13 [hyper,10,6,3,8,7,4,9] $F.
+
+------------ end of proof -------------
+
+
+Search stopped by max_proofs option.
+
+============ end of search ============
+
+-------------- statistics -------------
+clauses given                 12
+clauses generated              3
+  hyper_res generated          1
+  ur_res generated             2
+demod & eval rewrites          0
+clauses wt,lit,sk delete       0
+tautologies deleted            0
+clauses forward subsumed       0
+  (subsumed by sos)            0
+unit deletions                 0
+factor simplifications         0
+clauses kept                   2
+new demodulators               0
+empty clauses                  1
+clauses back demodulated       0
+clauses back subsumed          0
+usable size                   12
+sos size                       0
+demodulators size              0
+passive size                   0
+hot size                       0
+Kbytes malloced               95
+
+----------- times (seconds) -----------
+user CPU time          0.00          (0 hr, 0 min, 0 sec)
+system CPU time        0.00          (0 hr, 0 min, 0 sec)
+wall-clock time        0             (0 hr, 0 min, 0 sec)
+input time             0.00
+  clausify time        0.00
+pick given time        0.00
+hyper_res time         0.00
+ur_res time            0.00
+pre_process time       0.00
+  renumber time        0.00
+  demod time           0.00
+  order equalities     0.00
+  unit deleletion      0.00
+  factor simplify      0.00
+  weigh cl time        0.00
+  hints keep time      0.00
+  sort lits time       0.00
+  forward subsume      0.00
+  delete cl time       0.00
+  keep cl time         0.00
+    hints time         0.00
+  print_cl time        0.00
+  conflict time        0.00
+  new demod time       0.00
+post_process time      0.00
+  back demod time      0.00
+  back subsume         0.00
+  factor time          0.00
+  unindex time         0.00
+
+That finishes the proof of the theorem.
+
+Process 0 finished Sun Feb 24 14:11:40 2019

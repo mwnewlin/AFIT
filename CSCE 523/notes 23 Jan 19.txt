@@ -1,0 +1,24 @@
+
+Genetic Algorithms
+	Adapted procedure based on mechanics of natural genetics & natural selection
+	2 Essential components
+		1. Survival of the fittest
+		2. Recombination
+		
+	Chromosome = string
+	gene = single bit or single subsequence in string
+	2 Spaces
+		Phenotype Space 
+		Genotype  Space
+	Creation of solutions is called big bang
+		If there isn't enough material for the solution in the BB, the solution may not be found
+	
+	RTA* 
+		Pick best f(n), store 2nd best f(n) as new h(n)
+		Not optimal unless given infinite time
+		
+	LRTA* 
+		Pick and store best f(n)
+		Converges to optimal
+		
+	

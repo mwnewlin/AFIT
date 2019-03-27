@@ -1,0 +1,255 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fswiss\fcharset0 Courier New;}{\f1\fswiss\fcharset0 Arial;}}
+\viewkind4\uc1\pard\tx0\tx959\tx1918\tx2877\tx3836\tx4795\tx5754\tx6713\tx7672\tx8631\f0\fs20 WELCOME TO GRAPHPLAN\par
+\par
+Here is some information on running Graphplan, and on writing your own\par
+domains and problems for it.\par
+\par
+RUNNING GRAPHPLAN\par
+-----------------\par
+Decstation object code is in "graphplan" and sparc object code\par
+is in "graphplan.sparc".  If you are accessing this through the Web,\par
+you should set your "load to local disk" option and copy the files you\par
+want to your machine.  The sparc code is a newer version.\par
+\par
+\par
+To run, just type the program name. It will ask for an "operator" file\par
+that corresponds to a domain in Prodigy, and then it will ask for a\par
+"facts" file that corresponds to a problem in Prodigy.  Our naming\par
+convention is:\par
+\par
+\tab operator files look like: domainname_ops\par
+\tab facts files look like: domainname_facts[modifier]\par
+\par
+Graphplan will then ask for some options.  If you just hit return for\par
+all of them, it will run in its default mode, returning a plan when it\par
+finds one.  Some interesting options: \par
+\par
+Info type: enter "1" if you want to see what the action-levels of the\par
+\tab graph look like and to see it searching through goal sets.  \par
+\tab Enter "2" if you want more gory detail.\par
+\par
+X viewing: Use this to see an animation of what is going on.  Also\par
+        allows you to save the results to a postscript file.   (For some\par
+\tab reason, animation makes the DECstation code really huge, so there\par
+\tab are two versions here for the DECs and the one with animation is\par
+\tab gzipped.)\par
+\par
+Other:\tab 'I' means do a quick check to toss out irrelevant initial\par
+\tab     conditions.  See, for example, "rocket_factsBIG"\par
+\par
+\tab 'L' is a speedup using the reasoning: if I have m goals with\par
+\tab     the property that I can create at most one of them in a\par
+\tab     given time step, then I won't be able to find a plan of\par
+\tab     fewer than m time-steps.  For instance, in a TSP problem\par
+\tab     if there are m places still to be visited, then it knows\par
+\tab     it will fail if the current time is < m.\par
+\tab     NOTE: this option currently interferes with graphplan's\par
+\tab     completeness check.\par
+\par
+\tab 'S' is a speedup using the reasoning: if I have a set of goals\par
+\tab     at time t, and I've already failed on a SUBSET of these\par
+\tab     goals at time t, then we're going to fail.  Unfortunately,\par
+\tab     it seems computationally difficult to make this check, so\par
+\tab     really what Graphplan does with this option is check\par
+\tab     whether it has previously failed on some subset of size\par
+\tab     ONE SMALLER than the current set. \par
+\par
+\tab 'E' turns off some of graphplan's smarts.\par
+\par
+We may have some other options available that we are currently playing with.\par
+\par
+There are also command line arguments. Type "graphplan -h" to get a list.\par
+\par
+\tab\par
+FILE FORMATS\par
+------------\par
+\par
+The format for the operator and fact files can be seen in the\par
+examples. Graphplan takes operator files in three formats: (1) our own\par
+simplified Prodigy-like syntax, (2) Actual Prodigy syntax, and (3) an\par
+older version of (1).  [In format (3), the program assumes that any\par
+precondition not explicitly listed in the effects list is deleted].   If\par
+the file name ends in ".lisp" then the program assumes format (2),\par
+otherwise it assumes format (1), unless the very first character in\par
+the file is "#" in which case it assumes format (3).\par
+\par
+(We may at some point do away with format 3).\par
+\par
+A few key points:\par
+\par
+A. There is currently no inference of "not".  In fact, graphplan just\par
+treats "not" as a string of characters, just like "in" or "have".\par
+If you have an operator A that requires P to be false then\par
+you need to define a new proposition Q that just happens to be\par
+equivalent to (not P).  For instance, if P is, say,\par
+(on-ground <y>), then we might have Q be (not on-ground <y>), or\par
+(not-on-ground <y>) or (up-in-the-air <y>).\par
+\par
+B. In formats (1) and (3), the way to delete something is to put the\par
+word "del" as the first element of the list.  E.g., (del on-ground <y>) \par
+deletes (on-ground <y>).\par
+\par
+C. You can't use the underscore character "_" in any token.  I.e., write\par
+"on-ground" instead of "on_ground".\par
+\par
+D. It is assumed that if two parameters to a given operator\par
+have different names, like <x>, <y>, then they MUST match to values\par
+with different names.  This will hold until we can figure out what the\par
+right semantics of adding and deleting the same thing should be....\par
+\par
+E. In format (2), our parser only understands comments beginning with\par
+a ";".  Also, no inference or control rules, no lisp functions, and no\par
+type heirarchies.\par
+\par
+\par
+For the format of facts (problem) files, see any of the "_facts" files.\par
+These consist of a list of types (no inheritance) followed by the\par
+starting facts (in a list beginning with the keyword "preconds")\par
+followed by the desired goals (in a list beginning with the keyword\par
+"effects"). \par
+\par
+-----------------------------------------------------------------------\par
+Description of worlds in this directory:\par
+\par
+blocks: standard blocks world. "blocks_ops" in format (3), \par
+\tab "blocks_ops.lisp" in format (2).\par
+\par
+        the domain "blocks_facts_impossible" is a simple example of\par
+\tab an interesting unsolvable problem.\par
+\par
+fixit:  Russell's flat tire domain.  Some of the names have been changed\par
+\tab for increased readability (e.g., "not unfastened" --> "fastened")\par
+\par
+link30: Link-repeat domain from [VB94]\par
+\par
+logistics: logistics domain with trucks and planes, from Prodigy (in\par
+\tab particular, from [Veloso '92])\par
+\par
+mblocks: Like blocks but with multiple robot arms.\par
+\par
+monkey: monkey and bananas. From UCPOP from Prodigy.\par
+\par
+rocket: rocket domain, allowing for multiple rockets.  See if you can\par
+\tab figure out what's going on in "rocket_facts_fun".\par
+\par
+\tab In "rocket_factsBIG" is a domain that requires the "I" option\par
+\tab (graphplan has an internal array that is exceeded without it\par
+\tab -- we will change the program to be more flexible "real soon")\par
+\tab\par
+rocket_original: original rocket domain from Prodigy\par
+\par
+rocketf: Just like rocket, but now fuel is a cargo.\par
+\par
+testcase: a "bicycles and cars" matching problem.  "vehicles" (bikes)\par
+\tab can only go nearby, but "multiuse" (cars) can go near or far. \par
+\par
+BW.tar.gz: [BW] artificial domains. tar'ed and gzip'ed.\par
+\par
+---------------------------------------------------------------------\par
+\par
+Here is a sample run, with comments in [[BRACKETS]]. The program has\par
+changed slightly since this trace....\par
+\par
+% graphplan\par
+give file name for operators: fixit_ops  [[THIS IS LIKE A PRODIGY DOMAIN FILE]]\par
+open\par
+close\par
+fetch\par
+put-away\par
+loosen\par
+tighten\par
+jack-up\par
+jack-down\par
+undo\par
+do-up\par
+remove-wheel\par
+put-on-wheel\par
+inflate\par
+cuss\par
+ops loaded.\par
+give file name for initial facts: fixit_facts1  [[ LIKE A PRODIGY PROB FILE]]\par
+facts loaded.\par
+number of time steps, or <CR> for automatic:    [[ I HIT <CR> ]]\par
+Info type: (2 = max, 0 or <CR> = min):          [[ I HIT <CR> ]]\par
+Other: 'I' = look for irrelevants,\par
+       'L' = Lower bound time needed by counting steps\par
+       'D' = Don't do goals checking (for testing)\par
+       'E' = Don't do mutual exclusions (for testing)\par
+       'S' = examine subsets:                   [[ I HIT <CR> ]]\par
+time: 1, 13 facts and 1 exclusive pairs.\par
+time: 2, 17 facts and 9 exclusive pairs.\par
+time: 3, 20 facts and 13 exclusive pairs.\par
+time: 4, 20 facts and 10 exclusive pairs.\par
+time: 5, 22 facts and 24 exclusive pairs.\par
+time: 6, 25 facts and 38 exclusive pairs.\par
+time: 7, 27 facts and 41 exclusive pairs.\par
+Goals reachable at 7 steps but mutually exclusive.\par
+time: 8, 27 facts and 30 exclusive pairs.\par
+Goals reachable at 8 steps but mutually exclusive.\par
+time: 9, 27 facts and 28 exclusive pairs.\par
+Goals first reachable in 9 steps.             [[ THIS IS THE FIRST TIME THAT \par
+ALL GOALS APPEAR IN THE GRAPH AND NO PAIR IS MARKED AS MUTUALLY EXCLUSIVE]]\par
+\par
+546 nodes created.\par
+goals at time 10:\par
+  on_wheel2_the-hub in_wheel1_boot inflated_wheel2 in_wrench_boot in_jack_boot in_pump_boot tight_nuts_the-hub closed_boot\par
+\par
+Can't solve in 9 steps       [[ FAILED ON 9 STEPS SO TRY 10 ]]\par
+time: 10, 27 facts and 28 exclusive pairs.\par
+80 new nodes added.\par
+goals at time 11:\par
+  on_wheel2_the-hub in_wheel1_boot inflated_wheel2 in_wrench_boot in_jack_boot in_pump_boot tight_nuts_the-hub closed_boot\par
+\par
+Can't solve in 10 steps      [[ FAILED ON 10 STEPS SO TRY 11 ]]\par
+time: 11, 27 facts and 28 exclusive pairs.\par
+80 new nodes added.\par
+goals at time 12:\par
+  on_wheel2_the-hub in_wheel1_boot inflated_wheel2 in_wrench_boot in_jack_boot in_pump_boot tight_nuts_the-hub closed_boot\par
+\par
+Can't solve in 11 steps      [[ FAILED ON 11 STEPS SO TRY 12 ]]\par
+time: 12, 27 facts and 28 exclusive pairs.\par
+80 new nodes added.\par
+goals at time 13:     \par
+  on_wheel2_the-hub in_wheel1_boot inflated_wheel2 in_wrench_boot in_jack_boot in_pump_boot tight_nuts_the-hub closed_boot\par
+\par
+1 open_boot                  [[ 12 STEPS WORKED! (ALL ACTIONS HAVING THE SAME\par
+2 fetch_wrench_boot             NUMBER REPRESENT ACTIONS THAT COULD BE DONE IN\par
+2 fetch_pump_boot               ANY ORDER (OR IN PARALLEL) ]]   \par
+2 fetch_jack_boot\par
+2 fetch_wheel2_boot\par
+3 inflate_wheel2\par
+3 loosen_nuts_the-hub\par
+4 put-away_pump_boot\par
+4 jack-up_the-hub\par
+5 undo_nuts_the-hub\par
+6 remove-wheel_wheel1_the-hub\par
+7 put-on-wheel_wheel2_the-hub\par
+7 put-away_wheel1_boot\par
+8 do-up_nuts_the-hub\par
+9 jack-down_the-hub\par
+10 put-away_jack_boot\par
+10 tighten_nuts_the-hub\par
+11 put-away_wrench_boot\par
+12 close_boot\par
+76 entries in hash table, 153 hash hits, avg set size 5.\par
+240 total set-creation steps (entries + hits + plan length - 1).\par
+320 actions tried\par
+  2.89 secs\par
+\par
+[[The number of "set-creation steps" and the number of "actions tried"\par
+roughly correspond to the number of nodes in a searcher like Prodigy.\par
+"actions tried" is the number of non-noop actions attepted.  The time \par
+(2.89 secs) is longer than reported in the paper because of the time\par
+used in printing to the screen]]\par
+\par
+\par
+=======================================================================\par
+\tab\tab DISCLAIMER\par
+\tab\tab ----------\par
+This software is made available AS IS, and neither the authors nor CMU\par
+make any warranty about the software or its performance!!\par
+=======================================================================\par
+\par
+\pard\f1\par
+}
+ 

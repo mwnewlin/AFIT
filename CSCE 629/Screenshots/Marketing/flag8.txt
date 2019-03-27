@@ -1,0 +1,4 @@
+Bear Grylls likes to "crawl" around looking for "webs" so he can eat the "spiders".  He's a smart dude and knows LANMAN hashes are for wimps.  Perhaps you should mimic Bear and crawl his personal biography site (https://www.beargrylls.com/about) to learn more about him...   and potential passwords.  
+
+Bear's password is a word repeated thrice (e.g., BearBearBear) exactly as it appears on the website (case is preserved).
+

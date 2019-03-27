@@ -1,0 +1,49 @@
+Run 1
+Seed 1
+Sentiment Analysis (Docker)
+Start 03:58:07 PM UTC
+End   05:24:36 PM UTC
+99 Epochs
+Total time: 1:26
+
+Run 1
+Seed 1
+Sentiment Analysis (Nvidia Docker)
+Start 	10:53:24 PM	UTC
+End		12:19:45 AM
+99 Epochs
+Total Time 1:26
+
+Run 2 (Single GPU)
+Seed 1
+Sentiment Analysis (Nvidia Docker)
+Start 	12:34:15 AM
+End 	01:59:54 AM
+Total Time 1:25
+
+Run 2 
+Sentiment Analysis Docker
+Seed -1
+Start 	02:28:51 AM
+End 	03:55:18 AM
+Total Time 1:26
+
+Run 3 (Single GPU) Nvidia Docker
+Seed -1
+Start 	01:21:38 PM
+End 	02:48:04 PM
+Total Time 1:26
+
+Run 1 (Multiple (2) GPU) Nvidia Docker
+Start 	03:36:01 PM
+End		03:41:30 PM
+Total Time 0:05
+
+Run 2 (Multiple GPU) Nvidia Docker
+Start	04:14:03 PM UTC
+End		05:40:01 PM UTC
+
+Run 1 Singularity
+Start	05:27:18 PM
+End		06:51:15 PM
+Total Time 1:24

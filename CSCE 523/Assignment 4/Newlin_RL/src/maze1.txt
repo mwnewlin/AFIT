@@ -1,0 +1,4 @@
+3 3
+O O O
+G V V
+V V V

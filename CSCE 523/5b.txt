@@ -1,0 +1,14 @@
+	
+	DFS
+
+	Open					Visited
+	S							S
+	CBA							SC
+	GBA							SCG
+	IBA							SCGI
+	JBA							SCGIJ
+	XBA							SCGIJX - Goal Found!
+		
+
+
+

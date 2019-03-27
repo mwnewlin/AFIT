@@ -1,0 +1,38 @@
+Notes 8 Feb 19
+
+First Order Predicate Calculus
+	PL only uses propositions
+	FOL includes
+		Objects
+		Predicate/Relations
+		Functions
+		
+FOPC Definitions
+	Term - Identifies an object (fuction, constant)
+	Atomic Sentence - predicate with term arguments
+	Literals - atomic and negated atomic sentences
+	Connectives (if, iff, and, or ,not)
+	Quantifiers(There exists, for all)
+	
+	
+Instantiation
+	UI can be applied several times to add new sentences
+		new KB is logically equivalent to the old
+		
+	EI can be applied once to replace the existential sentence
+		new KB is NOT logically equivalent but is SATble iff old KB was SAT'ble
+
+Unification
+	Given expressions p and q, a UNIFIER of p and q is an binding list O
+	is any binding list such that pO = qO
+	Expressions w1 & w2 are unifiable iff there exists a substitution S 
+		such that, w1S = w2S
+		
+Substitution
+	Valid Types
+		Variable --> constant
+		variable1 --> variable2
+		variable --> function (if fn doesn't contain a(that) variable)
+		
+		
+

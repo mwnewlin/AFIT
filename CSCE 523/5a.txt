@@ -1,0 +1,19 @@
+		
+		BFS
+
+		Open					Visited
+		S							S
+		ABC							SA
+		BCDE						SAB
+		CDEIF					    SABC
+		DEIFG						SABCD
+		EIFGH						SABCDE
+		IFGH	    				SABCDEI
+		FGHJ						SABCDEIF
+		GHJ							SABCDEIFG
+		HJ							SABCDEIFGH
+		J							SABCDEIFGHJ
+		X							SABCDEIFGHJX Goal Found!
+
+				
+				

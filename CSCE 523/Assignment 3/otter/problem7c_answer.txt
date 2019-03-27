@@ -1,0 +1,178 @@
+----- Otter 3.2, August 2001 -----
+The process was started by ??? on ???,
+Sun Feb 24 13:14:17 2019
+The command was "otter.exe".
+
+set(ur_res).
+set(hyper_res).
+
+formula_list(usable).
+all x y z (Sword(x)&Bow(y)->Magic(z)).
+all x (Poe(x)<-> -(IronKnuckle(x)|Octorock(x))).
+end_of_list.
+
+-------> usable clausifies to:
+
+list(usable).
+1 [] -Sword(x)| -Bow(y)|Magic(z).
+2 [] -Poe(x)| -IronKnuckle(x).
+3 [] -Poe(x)| -Octorock(x).
+4 [] Poe(x)|IronKnuckle(x)|Octorock(x).
+end_of_list.
+
+formula_list(sos).
+-Octorock(G).
+all x (-(IronKnuckle(x)&Magic(x))).
+Octorock(Z).
+Sword(L)& -Poe(L).
+Bow(Z).
+Magic(G).
+Poe(G).
+Octorock(Z)&Poe(G)->IronKnuckle(L).
+-IronKnuckle(L).
+end_of_list.
+
+-------> sos clausifies to:
+
+list(sos).
+5 [] -Octorock(G).
+6 [] -IronKnuckle(x)| -Magic(x).
+7 [] Octorock(Z).
+8 [] Sword(L).
+9 [] -Poe(L).
+10 [] Bow(Z).
+11 [] Magic(G).
+12 [] Poe(G).
+13 [] -Octorock(Z)| -Poe(G)|IronKnuckle(L).
+14 [] -IronKnuckle(L).
+end_of_list.
+
+======= end of input processing =======
+
+=========== start of search ===========
+
+given clause #1: (wt=2) 5 [] -Octorock(G).
+
+given clause #2: (wt=2) 7 [] Octorock(Z).
+** KEPT (pick-wt=2): 15 [ur,7,3] -Poe(Z).
+
+given clause #3: (wt=2) 8 [] Sword(L).
+
+given clause #4: (wt=2) 9 [] -Poe(L).
+** KEPT (pick-wt=4): 16 [hyper,9,4] IronKnuckle(L)|Octorock(L).
+
+given clause #5: (wt=2) 10 [] Bow(Z).
+** KEPT (pick-wt=2): 17 [hyper,10,1,8] Magic(x).
+17 back subsumes 11.
+17 back subsumes 1.
+
+given clause #6: (wt=2) 12 [] Poe(G).
+** KEPT (pick-wt=2): 18 [ur,12,2] -IronKnuckle(G).
+
+given clause #7: (wt=2) 14 [] -IronKnuckle(L).
+** KEPT (pick-wt=2): 19 [ur,14,4,9] Octorock(L).
+19 back subsumes 16.
+
+given clause #8: (wt=2) 15 [ur,7,3] -Poe(Z).
+
+given clause #9: (wt=2) 17 [hyper,10,1,8] Magic(x).
+
+given clause #10: (wt=2) 18 [ur,12,2] -IronKnuckle(G).
+
+given clause #11: (wt=2) 19 [ur,14,4,9] Octorock(L).
+
+given clause #12: (wt=4) 6 [] -IronKnuckle(x)| -Magic(x).
+** KEPT (pick-wt=2): 20 [ur,6,17] -IronKnuckle(x).
+20 back subsumes 18.
+20 back subsumes 14.
+20 back subsumes 6.
+20 back subsumes 2.
+
+given clause #13: (wt=2) 20 [ur,6,17] -IronKnuckle(x).
+
+given clause #14: (wt=6) 13 [] -Octorock(Z)| -Poe(G)|IronKnuckle(L).
+** KEPT (pick-wt=2): 21 [hyper,13,7,12] IronKnuckle(L).
+
+----> UNIT CONFLICT at   0.10 sec ----> 22 [binary,21.1,20.1] $F.
+
+Length of proof is 3.  Level of proof is 2.
+
+---------------- PROOF ----------------
+
+1 [] -Sword(x)| -Bow(y)|Magic(z).
+6 [] -IronKnuckle(x)| -Magic(x).
+7 [] Octorock(Z).
+8 [] Sword(L).
+10 [] Bow(Z).
+12 [] Poe(G).
+13 [] -Octorock(Z)| -Poe(G)|IronKnuckle(L).
+17 [hyper,10,1,8] Magic(x).
+20 [ur,6,17] -IronKnuckle(x).
+21 [hyper,13,7,12] IronKnuckle(L).
+22 [binary,21.1,20.1] $F.
+
+------------ end of proof -------------
+
+
+Search stopped by max_proofs option.
+
+============ end of search ============
+
+-------------- statistics -------------
+clauses given                 14
+clauses generated             16
+  hyper_res generated          6
+  ur_res generated            10
+demod & eval rewrites          0
+clauses wt,lit,sk delete       0
+tautologies deleted            0
+clauses forward subsumed       9
+  (subsumed by sos)            0
+unit deletions                 0
+factor simplifications         0
+clauses kept                   7
+new demodulators               0
+empty clauses                  1
+clauses back demodulated       0
+clauses back subsumed          7
+usable size                   13
+sos size                       1
+demodulators size              0
+passive size                   0
+hot size                       0
+Kbytes malloced               95
+
+----------- times (seconds) -----------
+user CPU time          0.10          (0 hr, 0 min, 0 sec)
+system CPU time        0.00          (0 hr, 0 min, 0 sec)
+wall-clock time        0             (0 hr, 0 min, 0 sec)
+input time             0.00
+  clausify time        0.00
+pick given time        0.00
+hyper_res time         0.00
+ur_res time            0.00
+pre_process time       0.00
+  renumber time        0.00
+  demod time           0.00
+  order equalities     0.00
+  unit deleletion      0.00
+  factor simplify      0.00
+  weigh cl time        0.00
+  hints keep time      0.00
+  sort lits time       0.00
+  forward subsume      0.00
+  delete cl time       0.00
+  keep cl time         0.00
+    hints time         0.00
+  print_cl time        0.00
+  conflict time        0.00
+  new demod time       0.00
+post_process time      0.00
+  back demod time      0.00
+  back subsume         0.00
+  factor time          0.00
+  unindex time         0.00
+
+That finishes the proof of the theorem.
+
+Process 0 finished Sun Feb 24 13:14:17 2019

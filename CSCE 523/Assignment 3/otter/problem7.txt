@@ -1,0 +1,21 @@
+set(ur_res).
+set(hyper_res).
+
+formula_list(usable).
+
+end_of_list.
+
+formula_list(sos).
+-Fight(G,O).
+all x (-Fight(x,I) & Magic(x)).
+Fight(Z,O).
+Sword(L) & -Fight(L,P).
+Bow(Zelda).
+
+%Negated Goal
+-Magic(G). 
+
+
+end_of_list.
+
+

@@ -1,0 +1,28 @@
+30 Jan 19
+Game Playing
+
+
+(For coding, win conditions, modify win value by depth so that machine
+takes closest win)
+
+Static Board Evaluator
+	Evaluation function for board (heuristic)
+	
+
+minimax algorithms
+	Maxes player 1's utility 
+	player 2 min's player 1's utility
+	
+Alpha Beta minimax
+	Prune parts of search tree with [alpha, beta] window
+    Max only updates alpha but compares to beta
+	Min only updates beta but compares to alpha
+	
+Using Iterative Deepening you can use prior info on next move
+
+Killer move heuristic
+	store path to best move as heuristic
+	
+History Heuristic
+	Store number of moves selected out of the maxes and mins based on 
+		their move location

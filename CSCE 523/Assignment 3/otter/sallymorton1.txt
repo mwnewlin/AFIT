@@ -1,0 +1,17 @@
+set(ur_res).
+set(hyper_res).
+
+formula_list(usable).
+
+all x all y all z (sw(x,y) & a(y,z) -> a(x,z)).
+
+end_of_list.
+
+formula_list(sos).
+
+all x all y (a(x,y) -> r(x, ph(y))).
+sw(Sally, Morton).
+a(Morton, StudentUnion).
+-(exists x (r(Sally, x))).
+
+end_of_list.

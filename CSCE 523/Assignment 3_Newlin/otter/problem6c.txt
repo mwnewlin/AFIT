@@ -1,0 +1,29 @@
+set(ur_res).
+set(hyper_res).
+
+formula_list(usable).
+
+end_of_list.
+
+formula_list(sos).
+
+Uncle(John, Jack).
+Aunt(Mary, Amy).
+Female(Amy).
+Brother(Jack, Amy).
+Brother(Bill, Jack).
+all x all y (-Sister(x,y) | Siblings(x,y)).
+all x all y (-Brother(x,y) | Siblings(x,y)).
+all x all y (-Brother(x,y) | -Female(y) | Sister(x,y)).
+all x all y all z (-Siblings(x,y) | -Uncle(z,y) | Uncle(z,x)).
+all x all y (-Siblings(x,y) | Siblings(y,x)).
+all x all y all z (-Uncle(x,y) | -Aunt(z,y) | Married(x,z)).
+all x all y all z (-Uncle(x,y) | -Married(z,x) | Aunt(z,y)).
+all x all y (-Married(x,y) | Married(y,x)).
+%Negated Goal
+-(exists x (Siblings(Jack, x) | Uncle(John, x))). 
+
+
+end_of_list.
+
+

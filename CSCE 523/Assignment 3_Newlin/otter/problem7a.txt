@@ -1,0 +1,21 @@
+set(ur_res).
+set(hyper_res).
+
+formula_list(usable).
+all x all y all z ((Sword(x) & Bow(y)) -> Magic(z)).
+end_of_list.
+
+formula_list(sos).
+-Octorock(G).
+all x (-(IronKnuckle(x) & Magic(x))).
+Octorock(Z).
+Sword(L) & -Poe(L).
+Bow(Z).
+
+%Negated Goal
+-Magic(G). 
+
+
+end_of_list.
+
+

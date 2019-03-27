@@ -1,0 +1,132 @@
+----- Otter 3.2, August 2001 -----
+The process was started by ??? on ???,
+Sun Feb 24 12:56:32 2019
+The command was "otter.exe".
+
+set(ur_res).
+set(hyper_res).
+
+formula_list(usable).
+all x y z (Sword(x)&Bow(y)->Magic(z)).
+end_of_list.
+
+-------> usable clausifies to:
+
+list(usable).
+1 [] -Sword(x)| -Bow(y)|Magic(z).
+end_of_list.
+
+formula_list(sos).
+-Octorock(G).
+all x (-(IronKnuckle(x)&Magic(x))).
+Octorock(Z).
+Sword(L)& -Poe(L).
+Bow(Z).
+-Magic(G).
+end_of_list.
+
+-------> sos clausifies to:
+
+list(sos).
+2 [] -Octorock(G).
+3 [] -IronKnuckle(x)| -Magic(x).
+4 [] Octorock(Z).
+5 [] Sword(L).
+6 [] -Poe(L).
+7 [] Bow(Z).
+8 [] -Magic(G).
+end_of_list.
+
+======= end of input processing =======
+
+=========== start of search ===========
+
+given clause #1: (wt=2) 2 [] -Octorock(G).
+
+given clause #2: (wt=2) 4 [] Octorock(Z).
+
+given clause #3: (wt=2) 5 [] Sword(L).
+
+given clause #4: (wt=2) 6 [] -Poe(L).
+
+given clause #5: (wt=2) 7 [] Bow(Z).
+** KEPT (pick-wt=2): 9 [hyper,7,1,5] Magic(x).
+
+----> UNIT CONFLICT at   0.00 sec ----> 10 [binary,9.1,8.1] $F.
+
+Length of proof is 1.  Level of proof is 1.
+
+---------------- PROOF ----------------
+
+1 [] -Sword(x)| -Bow(y)|Magic(z).
+5 [] Sword(L).
+7 [] Bow(Z).
+8 [] -Magic(G).
+9 [hyper,7,1,5] Magic(x).
+10 [binary,9.1,8.1] $F.
+
+------------ end of proof -------------
+
+
+Search stopped by max_proofs option.
+
+============ end of search ============
+
+-------------- statistics -------------
+clauses given                  5
+clauses generated              1
+  hyper_res generated          1
+  ur_res generated             0
+demod & eval rewrites          0
+clauses wt,lit,sk delete       0
+tautologies deleted            0
+clauses forward subsumed       0
+  (subsumed by sos)            0
+unit deletions                 0
+factor simplifications         0
+clauses kept                   1
+new demodulators               0
+empty clauses                  1
+clauses back demodulated       0
+clauses back subsumed          0
+usable size                    6
+sos size                       3
+demodulators size              0
+passive size                   0
+hot size                       0
+Kbytes malloced               63
+
+----------- times (seconds) -----------
+user CPU time          0.00          (0 hr, 0 min, 0 sec)
+system CPU time        0.00          (0 hr, 0 min, 0 sec)
+wall-clock time        0             (0 hr, 0 min, 0 sec)
+input time             0.00
+  clausify time        0.00
+pick given time        0.00
+hyper_res time         0.00
+ur_res time            0.00
+pre_process time       0.00
+  renumber time        0.00
+  demod time           0.00
+  order equalities     0.00
+  unit deleletion      0.00
+  factor simplify      0.00
+  weigh cl time        0.00
+  hints keep time      0.00
+  sort lits time       0.00
+  forward subsume      0.00
+  delete cl time       0.00
+  keep cl time         0.00
+    hints time         0.00
+  print_cl time        0.00
+  conflict time        0.00
+  new demod time       0.00
+post_process time      0.00
+  back demod time      0.00
+  back subsume         0.00
+  factor time          0.00
+  unindex time         0.00
+
+That finishes the proof of the theorem.
+
+Process 0 finished Sun Feb 24 12:56:32 2019

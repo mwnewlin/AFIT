@@ -1,0 +1,46 @@
+Notes 4 Feb 19
+
+Alpha-Beta Properties
+	Pruning doesn't affect final result (if heuristic is admissible)
+	Good move ordering improves effectiveness of pruning
+	With perfect ordering tc is O(b^m/2) w/out its more O(b^3m/4)
+	
+Problems with fixed ply
+	horizon effect
+		Inevitable losses are postponed or unachievable goals appear achievable inside the SS
+		Short term gains mask traps
+		
+How to counter horizon effect 
+	Feedover
+		Don't cut off search in non-smooth board position
+	    "smoothness" similar to conditioning for matrices
+    Secondary Search
+		search further down selected path
+		
+	Progressive deepening (IDS)
+		Search only one ply, then 2 ply, ... until time runs out
+		
+		
+3 Player Games
+	Each player maxes own utility
+	each node stores a vector of utilities
+	entire vector is backed up
+	
+Non-deterministic Games
+	Dice!
+	Instead of Max, Min, etc... its Max, Dice, Max,...
+	Generally uses an expecto-Max function to maximize expectation
+	
+Transposition Tables
+	Position in table was previously searched d ply deepening, but current position
+	requires a search to depth d'
+		d' < d return d (more accurate)
+		d = d' return d (same accuracy)
+		d' > d not accurate enough to use
+		
+	If V <= alpha < beta then V an upper bounc on correct val
+	If alpha < V < beta then V an accurate val
+	If alpha < beta <= V then V a lower bound on correct val
+	
+
+	

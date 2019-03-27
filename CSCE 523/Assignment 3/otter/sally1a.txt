@@ -1,0 +1,130 @@
+----- Otter 3.2, August 2001 -----
+The process was started by ??? on ???,
+Mon Feb 03 21:08:12 2003
+The command was "otter".
+
+set(ur_res).
+set(hyper_res).
+
+formula_list(usable).
+all x y z (sw(x,y)&a(y,z)->a(x,z)).
+end_of_list.
+
+-------> usable clausifies to:
+
+list(usable).
+1 [] -sw(x,y)| -a(y,z)|a(x,z).
+end_of_list.
+
+formula_list(sos).
+all x y (a(x,y)->r(x,ph(y))).
+sw(Sally,Morton).
+a(Morton,StudentUnion).
+-(exists x r(Sally,x)).
+end_of_list.
+
+-------> sos clausifies to:
+
+list(sos).
+2 [] -a(x,y)|r(x,ph(y)).
+3 [] sw(Sally,Morton).
+4 [] a(Morton,StudentUnion).
+5 [] -r(Sally,x).
+end_of_list.
+
+======= end of input processing =======
+
+=========== start of search ===========
+
+given clause #1: (wt=3) 3 [] sw(Sally,Morton).
+
+given clause #2: (wt=3) 4 [] a(Morton,StudentUnion).
+** KEPT (pick-wt=3): 6 [hyper,4,1,3] a(Sally,StudentUnion).
+
+given clause #3: (wt=3) 5 [] -r(Sally,x).
+
+given clause #4: (wt=3) 6 [hyper,4,1,3] a(Sally,StudentUnion).
+
+given clause #5: (wt=7) 2 [] -a(x,y)|r(x,ph(y)).
+** KEPT (pick-wt=4): 7 [hyper,2,6] r(Sally,ph(StudentUnion)).
+
+----> UNIT CONFLICT at   0.06 sec ----> 8 [binary,7.1,5.1] $F.
+
+Length of proof is 2.  Level of proof is 2.
+
+---------------- PROOF ----------------
+
+1 [] -sw(x,y)| -a(y,z)|a(x,z).
+2 [] -a(x,y)|r(x,ph(y)).
+3 [] sw(Sally,Morton).
+4 [] a(Morton,StudentUnion).
+5 [] -r(Sally,x).
+6 [hyper,4,1,3] a(Sally,StudentUnion).
+7 [hyper,2,6] r(Sally,ph(StudentUnion)).
+8 [binary,7.1,5.1] $F.
+
+------------ end of proof -------------
+
+
+Search stopped by max_proofs option.
+
+============ end of search ============
+
+-------------- statistics -------------
+clauses given                  5
+clauses generated              3
+  hyper_res generated          2
+  ur_res generated             1
+demod & eval rewrites          0
+clauses wt,lit,sk delete       0
+tautologies deleted            0
+clauses forward subsumed       1
+  (subsumed by sos)            1
+unit deletions                 0
+factor simplifications         0
+clauses kept                   2
+new demodulators               0
+empty clauses                  1
+clauses back demodulated       0
+clauses back subsumed          0
+usable size                    6
+sos size                       1
+demodulators size              0
+passive size                   0
+hot size                       0
+Kbytes malloced               63
+
+----------- times (seconds) -----------
+user CPU time          0.27          (0 hr, 0 min, 0 sec)
+system CPU time        0.00          (0 hr, 0 min, 0 sec)
+wall-clock time        0             (0 hr, 0 min, 0 sec)
+input time             0.00
+  clausify time        0.00
+pick given time        0.00
+hyper_res time         0.00
+ur_res time            0.00
+pre_process time       0.00
+  renumber time        0.00
+  demod time           0.00
+  order equalities     0.00
+  unit deleletion      0.00
+  factor simplify      0.00
+  weigh cl time        0.00
+  hints keep time      0.00
+  sort lits time       0.00
+  forward subsume      0.00
+  delete cl time       0.00
+  keep cl time         0.00
+    hints time         0.00
+  print_cl time        0.00
+  conflict time        0.00
+  new demod time       0.00
+post_process time      0.00
+  back demod time      0.00
+  back subsume         0.00
+  factor time          0.00
+  unindex time         0.00
+
+That finishes the proof of the theorem.
+
+Process 0 finished Mon Feb 03 21:08:12 2003

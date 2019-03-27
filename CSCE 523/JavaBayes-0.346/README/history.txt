@@ -1,0 +1,150 @@
+JavaBayes history
+
+Quick description of versions and updates (this file was 
+created February 27 1997, so facts before this date are
+not very accurately described):
+
+- Jan 31 2001: JavaBayes 0.346
+  A small error in the JohnMaryCall example was 
+    fixed (a probability value was incorrectly typed as 0.94).
+  A bug in the output (printing) routines, introduced
+    in version 0.345, was detected by Alan Mehlenbacher 
+    and Bozhena Bidyuk and was fixed (changes to
+    ProbabilityFunction.java).
+  A simple warning is now displayed to the user in the
+    console everytime a probability measure is edited
+    and does not add up to one (following suggestions
+    by Robert Wilensky and Simon Keizer).
+  
+- Nov 24 2000: JavaBayes 0.345
+  Changed color of arcs to gray; previous color was lightGray
+    and made it hard to see in viewgraphs (in NetworkPanel.java).
+  Corrected problem with rendering circles in Java2, thanks
+    to a suggestion by Michael Becke (in NetworkPanel.java).
+  Corrected problem with Help menu that could appear in certain
+    implementation of Java, particularly in the Mac (solution
+    given by Jason Townsend) (in JavaBayesInterfaceConsoleFrame.java).
+  Changed presentation of probability functions to include
+    names of values (suggested by Robert Wilensky) 
+    (in ProbabilityFunction.java).
+  Changed the default values of variables, to make it
+    compatible with examples (suggested by Robert Wilensky) 
+    (in InferenceGraphNode.java).
+  Corrected problem with the quit dialog staying alive in
+    web browsers (in QuitDialog.java).
+  
+- Sep 12 2000: JavaBayes 0.344.
+  Removed the option "Sensitivity" from the menu, because
+        this option is not implemented yet.
+  Corrected bug in computation of area (NetworkPanel.java),
+        detected by Alexander Churbanov.
+	The insidious problem with modal dialogs was 
+	solved thanks to Robert E. Bruce; the problem boiled down 
+	to removing the "synchronized" from the show methods.
+        Yet another bug in the Junction Tree algorithm was
+	found by Wei Zhou and corrected; the system was 
+	tested more carefully and now the junction tree
+	algorithm seems (finally) correct.
+	Observed nodes are now affected by changes immediately,
+	not after random events in the network panel.
+	Changed the starting mode to MOVE_MODE, to prevent
+	nodes from being created inadventently.
+
+- Fev 7 2000: JavaBayes0.343.
+	Wei Zhou detected bug in Junction Tree algorithm and
+	proposed correction. Resulting code is a bit less
+	efficient than it could be; this should be corrected.
+
+- Nov 8 1999: JavaBayes0.342.
+	Files in the InterchangeFormat package are
+	renamed and files in the QuasiBayesianNetworks package
+	are renamed and moved to the (new) CredalSets package. 
+	These changes were made to allow JavaBayes to run
+	in the Macintosh operating system.
+	The edit dialogs for Network, Variable and Function
+	changed considerably in design and functionality.
+	One of the most important changes is the fact that
+	now the user does not need to press enter to apply
+	the changes; there is a specific Apply button to do that.
+
+- Nov 23 1998: JavaBayes0.341.
+        The XMLBIF format is updated accordingly
+	to discussions in the Interchange Format committee;
+	several major bugs in the code for junction trees are
+	fixed; the layout of Edit dialogs changes (gets insets;
+	colors for the Edit Function dialogs).
+
+- Ago 1998: JavaBayes 0.34, with new format option allows 
+	JavaBayes to save networks in the BUGS format; 
+	a new algorithm option produces inferences based 
+	in junction trees; dialogs are not modal in order 
+	to accommodate bugs in the JDK 1.1.6; menus and
+	options are re-organized (options for Explanations
+	are organized).
+
+- Dec 8 1997: Some bugs are corrected; the code for opening
+	files (parsing) and saving files was re-designed.
+	Now JavaBayes can open and save files in several formats.
+	The new format 0.2, based on XML, is released with
+	JavaBayes 0.333.
+
+- Sept 2 1997: After several minor updates and corrections,
+	JavaBayes0.33 is released. This is another major
+	release:
+	- The graphical editor was rewritten from scratch
+	so that it does not have limitations in the number
+	of nodes and arcs; preparing for scrolling in JDK1.1.
+	Colors were added to the editor; new editing windows
+	were created.
+	- The graphical editor now supports full 
+	specification of local and global credal sets.
+	- D-separation relations are used to process
+	only the nodes that can affect the result.
+	- Triangulation using minimum-weight heuristic is
+	used to produce an ordering for the bucket elimination.
+	- Several bugs in the way explanations were handled
+	were caught and corrected.
+	- A release for JDK1.1.2 was compiled separately
+	from the release for JDK1.0.2.
+
+- Feb 27 1997: A major update, JavaBayes0.3 contains a
+	number of important changes:
+	- The graphical editor interface was partially rewritten
+	to allow more options and a less cluttered environment.
+	- The inference engine was extended to handle expectations,
+	maximum a posteriori probability and maximum a
+	posteriori expectations.
+	- Preliminary algorithms for local robustness analysis
+	were added; previous algorithms for global
+	robustness analysis were rewritten from scratch.
+
+- Dec 23 1996: A minor update, JavaBayes 0.2b, incorporates 
+	preliminary, beta support for global robustness analysis
+	for epsilon-contaminated and constant density bounded families.
+
+- Dec 10 1996: JavaBayes 0.2 is released, incorporating the
+	JavaCC parser for the InterchangeFormat.
+
+- Nov 12 1996: The version of JavaBayes built by Chao-Lin Liu (which
+	was not distributed) is used to teach students at
+	University of Michigan.
+
+- Nov 7 1996: The first version of the JavaBayes parser, which 
+	was completely coded by hand, was built, but not
+	packaged into JavaBayes0.1.
+
+- Nov 3 1996: The name JavaBayes is adopted, using suggestion
+	by Chao-Lin Liu and Michael Wellman
+
+- Nov 2 1996: Chao-Lin Liu contributes code that detects cycles.
+
+- Oct 20 1996: First version of graphical user interface incorporated
+	from Sreekanth Nagarajan and Bruce D'Ambrosio's system.
+
+- Sep 4 1996: Web site is created and BayesianNetworks is announced.
+
+- Aug 23 1996: The package BayesianNetworks is created by
+	Fabio Cozman; BayesNet.java, Buckets.java and OrderedEvidence.java.
+	Data was read in simple format from file; data was processed
+	through the AssessBel application and AssessBelApplet applet.
+

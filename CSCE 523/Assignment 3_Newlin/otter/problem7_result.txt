@@ -1,0 +1,31 @@
+set(ur_res).
+set(hyper_res).
+
+formula_list(usable).
+end_of_list.
+
+formula_list(sos).
+%Initial Constraints
+-Octorock(G).
+all x (-(IronKnuckle(x) & Magic(x))).
+Octorock(Z).
+Sword(L) & -Poe(L).
+Bow(Z).
+%Result From Problem a
+Magic(G).
+%Result from Problem b
+Poe(G).
+%Result from Problem c
+IronKnuckle(L).
+%What we know
+	%Zelda fought Octorock with the Bow
+	%Ganondorf Fought Poe with Magic 
+	%Link used the Sword and fought IronKnuckle
+	
+%Negated Goal
+-(Bow(Z)&Octorock(Z) & (Poe(G) & Magic(G)) & (Sword(L) & IronKnuckle(L))). 
+
+
+end_of_list.
+
+

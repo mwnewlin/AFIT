@@ -1,0 +1,202 @@
+----- Otter 3.2, August 2001 -----
+The process was started by ??? on ???,
+Tue Feb 19 08:52:53 2019
+The command was "otter".
+
+set(ur_res).
+set(hyper_res).
+
+formula_list(usable).
+end_of_list.
+
+-------> usable clausifies to:
+
+list(usable).
+end_of_list.
+
+formula_list(sos).
+Uncle(John,Jack).
+Aunt(Mary,Amy).
+Female(Amy).
+Brother(Jack,Amy).
+Brother(Bill,Jack).
+all x y (-Sister(x,y)|Siblings(x,y)).
+all x y (-Brother(x,y)|Siblings(x,y)).
+all x y (-Brother(x,y)| -Female(y)|Sister(x,y)).
+all x y z (-Siblings(x,y)| -Uncle(z,y)|Uncle(z,x)).
+all x y (-Siblings(x,y)|Siblings(y,x)).
+all x y z (-Uncle(x,y)| -Aunt(z,y)|Married(x,z)).
+all x y z (-Uncle(x,y)| -Married(z,x)|Aunt(z,y)).
+all x y (-Married(x,y)|Married(y,x)).
+-Aunt(Mary,Jack).
+end_of_list.
+
+-------> sos clausifies to:
+
+list(sos).
+1 [] Uncle(John,Jack).
+2 [] Aunt(Mary,Amy).
+3 [] Female(Amy).
+4 [] Brother(Jack,Amy).
+5 [] Brother(Bill,Jack).
+6 [] -Sister(x,y)|Siblings(x,y).
+7 [] -Brother(x,y)|Siblings(x,y).
+8 [] -Brother(x,y)| -Female(y)|Sister(x,y).
+9 [] -Siblings(x,y)| -Uncle(z,y)|Uncle(z,x).
+10 [] -Siblings(x,y)|Siblings(y,x).
+11 [] -Uncle(x,y)| -Aunt(z,y)|Married(x,z).
+12 [] -Uncle(x,y)| -Married(z,x)|Aunt(z,y).
+13 [] -Married(x,y)|Married(y,x).
+14 [] -Aunt(Mary,Jack).
+end_of_list.
+
+======= end of input processing =======
+
+=========== start of search ===========
+
+given clause #1: (wt=2) 3 [] Female(Amy).
+
+given clause #2: (wt=3) 1 [] Uncle(John,Jack).
+
+given clause #3: (wt=3) 2 [] Aunt(Mary,Amy).
+
+given clause #4: (wt=3) 4 [] Brother(Jack,Amy).
+
+given clause #5: (wt=3) 5 [] Brother(Bill,Jack).
+
+given clause #6: (wt=3) 14 [] -Aunt(Mary,Jack).
+
+given clause #7: (wt=6) 6 [] -Sister(x,y)|Siblings(x,y).
+
+given clause #8: (wt=6) 7 [] -Brother(x,y)|Siblings(x,y).
+** KEPT (pick-wt=3): 15 [hyper,7,5] Siblings(Bill,Jack).
+** KEPT (pick-wt=3): 16 [hyper,7,4] Siblings(Jack,Amy).
+
+given clause #9: (wt=3) 15 [hyper,7,5] Siblings(Bill,Jack).
+
+given clause #10: (wt=3) 16 [hyper,7,4] Siblings(Jack,Amy).
+
+given clause #11: (wt=6) 10 [] -Siblings(x,y)|Siblings(y,x).
+** KEPT (pick-wt=3): 17 [hyper,10,16] Siblings(Amy,Jack).
+** KEPT (pick-wt=3): 18 [hyper,10,15] Siblings(Jack,Bill).
+
+given clause #12: (wt=3) 17 [hyper,10,16] Siblings(Amy,Jack).
+
+given clause #13: (wt=3) 18 [hyper,10,15] Siblings(Jack,Bill).
+
+given clause #14: (wt=6) 13 [] -Married(x,y)|Married(y,x).
+
+given clause #15: (wt=8) 8 [] -Brother(x,y)| -Female(y)|Sister(x,y).
+** KEPT (pick-wt=3): 19 [hyper,8,4,3] Sister(Jack,Amy).
+
+given clause #16: (wt=3) 19 [hyper,8,4,3] Sister(Jack,Amy).
+
+given clause #17: (wt=9) 9 [] -Siblings(x,y)| -Uncle(z,y)|Uncle(z,x).
+** KEPT (pick-wt=3): 20 [hyper,9,17,1] Uncle(John,Amy).
+** KEPT (pick-wt=3): 21 [hyper,9,15,1] Uncle(John,Bill).
+
+given clause #18: (wt=3) 20 [hyper,9,17,1] Uncle(John,Amy).
+
+given clause #19: (wt=3) 21 [hyper,9,15,1] Uncle(John,Bill).
+
+given clause #20: (wt=9) 11 [] -Uncle(x,y)| -Aunt(z,y)|Married(x,z).
+** KEPT (pick-wt=3): 22 [hyper,11,20,2] Married(John,Mary).
+
+given clause #21: (wt=3) 22 [hyper,11,20,2] Married(John,Mary).
+** KEPT (pick-wt=3): 23 [hyper,22,13] Married(Mary,John).
+
+given clause #22: (wt=3) 23 [hyper,22,13] Married(Mary,John).
+
+given clause #23: (wt=9) 12 [] -Uncle(x,y)| -Married(z,x)|Aunt(z,y).
+** KEPT (pick-wt=3): 24 [hyper,12,21,23] Aunt(Mary,Bill).
+** KEPT (pick-wt=3): 25 [hyper,12,1,23] Aunt(Mary,Jack).
+
+----> UNIT CONFLICT at   0.00 sec ----> 26 [binary,25.1,14.1] $F.
+
+Length of proof is 6.  Level of proof is 6.
+
+---------------- PROOF ----------------
+
+1 [] Uncle(John,Jack).
+2 [] Aunt(Mary,Amy).
+4 [] Brother(Jack,Amy).
+7 [] -Brother(x,y)|Siblings(x,y).
+9 [] -Siblings(x,y)| -Uncle(z,y)|Uncle(z,x).
+10 [] -Siblings(x,y)|Siblings(y,x).
+11 [] -Uncle(x,y)| -Aunt(z,y)|Married(x,z).
+12 [] -Uncle(x,y)| -Married(z,x)|Aunt(z,y).
+13 [] -Married(x,y)|Married(y,x).
+14 [] -Aunt(Mary,Jack).
+16 [hyper,7,4] Siblings(Jack,Amy).
+17 [hyper,10,16] Siblings(Amy,Jack).
+20 [hyper,9,17,1] Uncle(John,Amy).
+22 [hyper,11,20,2] Married(John,Mary).
+23 [hyper,22,13] Married(Mary,John).
+25 [hyper,12,1,23] Aunt(Mary,Jack).
+26 [binary,25.1,14.1] $F.
+
+------------ end of proof -------------
+
+
+Search stopped by max_proofs option.
+
+============ end of search ============
+
+-------------- statistics -------------
+clauses given                 23
+clauses generated             33
+  hyper_res generated         18
+  ur_res generated            15
+demod & eval rewrites          0
+clauses wt,lit,sk delete       0
+tautologies deleted            0
+clauses forward subsumed      22
+  (subsumed by sos)            9
+unit deletions                 0
+factor simplifications         0
+clauses kept                  11
+new demodulators               0
+empty clauses                  1
+clauses back demodulated       0
+clauses back subsumed          0
+usable size                   23
+sos size                       2
+demodulators size              0
+passive size                   0
+hot size                       0
+Kbytes malloced               95
+
+----------- times (seconds) -----------
+user CPU time          0.00          (0 hr, 0 min, 0 sec)
+system CPU time        0.00          (0 hr, 0 min, 0 sec)
+wall-clock time        0             (0 hr, 0 min, 0 sec)
+input time             0.00
+  clausify time        0.00
+pick given time        0.00
+hyper_res time         0.00
+ur_res time            0.00
+pre_process time       0.00
+  renumber time        0.00
+  demod time           0.00
+  order equalities     0.00
+  unit deleletion      0.00
+  factor simplify      0.00
+  weigh cl time        0.00
+  hints keep time      0.00
+  sort lits time       0.00
+  forward subsume      0.00
+  delete cl time       0.00
+  keep cl time         0.00
+    hints time         0.00
+  print_cl time        0.00
+  conflict time        0.00
+  new demod time       0.00
+post_process time      0.00
+  back demod time      0.00
+  back subsume         0.00
+  factor time          0.00
+  unindex time         0.00
+
+That finishes the proof of the theorem.
+
+Process 0 finished Tue Feb 19 08:52:53 2019

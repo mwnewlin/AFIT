@@ -1,0 +1,33 @@
+CSCE 523 Notes 7 Jan 19
+Search
+
+
+Permeates all of AI
+	choices we make to optimize a performance measure
+	
+EX: Holiday in Romania, currently in Arad, want to reach Bucharest
+	Formulate Goal: 
+	Formulate Problem:
+	Find Solution:
+	
+	
+Agent's Process to solve problem
+	Formulate 
+	Search
+		view search space as a tree
+		initial state --> root
+		Actions --> edges - may have costs
+		Solution is path from initial to solution node
+		search strategies differ only in the queueing strategy
+			Perf Issues:
+				Completeness (Always finds solution)
+				Cost of Search (time & space)
+				Cost of solution, optimal solution
+				Make use of knowledge of the domain, blind search vs informed search
+		Gen search function (p. 10 of slides)
+		In the book, the goal check for BFS is inserted in the for each loop
+		to reduce complexity of t & s. (not useful in general)
+		
+		
+	Execute
+	

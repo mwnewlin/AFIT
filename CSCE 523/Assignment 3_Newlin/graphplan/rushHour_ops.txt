@@ -1,0 +1,81 @@
+
+(operator
+  MOVE-EAST
+  (params (<car1> OBJECT) (<dir> DIRECTION) (<frontloc1> LOCATION) (<backloc1> LOCATION) 
+			(<frontloc2> LOCATION) (<frontcar1> OBJECT) (<backcar1> OBJECT))
+  (preconds 
+	(clear <frontloc2>) (facing <car1> east) (adjacent-east <frontloc2> <frontloc1>))
+  (effects 
+	(in <frontcar1> <frontloc2>) (in <backcar1> <frontloc1>) 
+	(del clear <frontloc2>) (clear <backloc1>)))
+
+(operator
+  MOVE-EAST-BACKWARDS
+  (params (<car1> OBJECT) (<dir> DIRECTION) (<frontloc1> LOCATION) (<backloc1> LOCATION) 
+			(<frontloc2> LOCATION) (<frontcar1> OBJECT) (<backcar1> OBJECT))
+  (preconds 
+	(clear <frontloc2>) (facing <car1> west) (adjacent-east <frontloc2> <frontloc1>))
+  (effects 
+	(in <frontcar1> <frontloc2>) (in <backcar1> <frontloc1>) 
+	(del clear <frontloc2>) (clear <backloc1>)))
+
+(operator
+  MOVE-WEST
+  (params (<car1> OBJECT) (<dir> DIRECTION) (<frontloc1> LOCATION) (<backloc1> LOCATION) 
+			(<frontloc2> LOCATION) (<frontcar1> OBJECT) (<backcar1> OBJECT))
+  (preconds 
+	(clear <frontloc2>) (facing <car1> west) (adjacent-west <frontloc2> <frontloc1>))
+  (effects 
+	(in <frontcar1> <frontloc2>) (in <backcar1> <frontloc1>) 
+	(del clear <frontloc2>) (clear <backloc1>)))
+	
+(operator
+  MOVE-WEST-BACKWARDS
+  (params (<car1> OBJECT) (<dir> DIRECTION) (<frontloc1> LOCATION) (<backloc1> LOCATION) 
+			(<frontloc2> LOCATION) (<frontcar1> OBJECT) (<backcar1> OBJECT))
+  (preconds 
+	(clear <frontloc2>) (facing <car1> east) (adjacent-west <frontloc2> <frontloc1>))
+  (effects 
+	(in <frontcar1> <frontloc2>) (in <backcar1> <frontloc1>) 
+	(del clear <frontloc2>) (clear <backloc1>)))
+
+(operator
+ MOVE-NORTH
+ (params (<car1> OBJECT) (<dir> DIRECTION) (<frontloc1> LOCATION) (<backloc1> LOCATION) 
+			(<frontloc2> LOCATION) (<frontcar1> OBJECT) (<backcar1> OBJECT))
+  (preconds 
+	(clear <frontloc2>) (facing <car1> north) (adjacent-north <frontloc2> <frontloc1>))
+  (effects 
+	(in <frontcar1> <frontloc2>) (in <backcar1> <frontloc1>) 
+	(del clear <frontloc2>) (clear <backloc1>)))
+	
+(operator
+ MOVE-NORTH-BACKWARDS
+ (params (<car1> OBJECT) (<dir> DIRECTION) (<frontloc1> LOCATION) (<backloc1> LOCATION) 
+			(<frontloc2> LOCATION) (<frontcar1> OBJECT) (<backcar1> OBJECT))
+  (preconds 
+	(clear <frontloc2>) (facing <car1> south) (adjacent-north <frontloc2> <frontloc1>))
+  (effects 
+	(in <frontcar1> <frontloc2>) (in <backcar1> <frontloc1>) 
+	(del clear <frontloc2>) (clear <backloc1>)))
+
+(operator
+ MOVE-SOUTH
+ (params (<car1> OBJECT) (<dir> DIRECTION) (<frontloc1> LOCATION) (<backloc1> LOCATION) 
+			(<frontloc2> LOCATION) (<frontcar1> OBJECT) (<backcar1> OBJECT))
+  (preconds 
+	(clear <frontloc2>) (facing <car1> south) (adjacent-south <frontloc2> <frontloc1>))
+  (effects 
+	(in <frontcar1> <frontloc2>) (in <backcar1> <frontloc1>) 
+	(del clear <frontloc2>) (clear <backloc1>)))
+	
+(operator
+ MOVE-SOUTH-BACKWARDS
+ (params (<car1> OBJECT) (<dir> DIRECTION) (<frontloc1> LOCATION) (<backloc1> LOCATION) 
+			(<frontloc2> LOCATION) (<frontcar1> OBJECT) (<backcar1> OBJECT))
+  (preconds 
+	(clear <frontloc2>) (facing <car1> north) (adjacent-south <frontloc2> <frontloc1>))
+  (effects 
+	(in <frontcar1> <frontloc2>) (in <backcar1> <frontloc1>) 
+	(del clear <frontloc2>) (clear <backloc1>)))
+

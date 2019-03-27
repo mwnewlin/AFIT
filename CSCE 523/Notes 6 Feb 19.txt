@@ -1,0 +1,61 @@
+
+Notes 6 Feb 19
+
+Knowledge Representation
+	Knowledge Bases
+		KB - A set of sentences in a formal language
+		Declarative approach to building an agent 
+			Tell it what it needs to know
+		Then it can ask itself what to do
+			Answers follow from KB
+			
+KB Agent
+	KB Agent must be able to
+		Represent states actions etc
+		incorporate new percepts
+		update internal representations of world
+		deduce hidden properties about the world
+		deduce appropriate actions
+		
+	We will
+		Describe properties of languages to use for logical reasoning
+		describe techniques for deducing new information from current information
+		Apply search to deduce specifically needed information
+		
+Wumpus World Game (weird)
+
+Logic	
+	Formal language for representating info to draw conclusions
+		Sentence
+		Syntax
+		Semantics
+		Proof System
+
+A few formal logics		
+	Language 				Ontological Commitment 			Epistemological Commitment
+	Propositional Logic 	facts 							true/false/unknown
+	Predicate Logic 		facts, objects, relations 		true/false/unknown
+	Temporal Logic 			facts, objects, relations, time true/false/unknown
+	Probability Theory 		facts 							degree of belief in [0.0 .. 1.0]
+	Fuzzy Logic 			degree of truth 				degree of belief in [0.0 .. 1.0]
+
+Definitions
+		Meaning of a sentence is a mapping onto the "real world"
+		A sentence is valid (a tautology) iff true under all possible interpretations
+		Not valid:
+			A AND NOT A 
+			A OR B (sat'ble)
+			
+Entailment
+	sentences entail sentences
+	facts follow from facts
+	
+Proof Methods
+	Model Checking
+	Application of inference rules
+Pf by inference
+	Complete inference procedure can generate all sentences in the KB
+	
+Propositional Logic
+	
+		

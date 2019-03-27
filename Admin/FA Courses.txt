@@ -1,0 +1,7 @@
+2018 FA Courses (Assuming scheduled according to ENG Handbook)
+
+4 Courses 16 qtr hrs
+CSCE 525 Introduction to Cyber Warfare and Security    M. Reith 	MW 	10:00:00-11:40:00 	640 	338
+CSCE 526 Secure Software Design and Development        J. Okolica 	TF 	10:00:00-11:40:00 	646 	212
+CSCE 560 Introduction to Computer Networking           B. Mullins 	MW 	14:00:00-15:40:00 	642 	204
+CSCE 586 Design & Analysis of Algorithms               M. DeYoung 	TR 	10:00:00-11:40:00 	646 	212

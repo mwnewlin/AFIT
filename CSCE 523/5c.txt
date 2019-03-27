@@ -1,0 +1,16 @@
+BFS
+
+Open					Visited
+S	
+ABC							S
+BCDE						SA
+CDEIF					    SAB
+DEIFG						SABC
+EIFGH						SABCD
+IFGH	    				SABCDE
+FGHJ						SABCDEI
+GHJ							SABCDEIF
+HJ							SABCDEIFG
+J							SABCDEIFGH
+X							SABCDEIFGHJ
+		Goal Found!

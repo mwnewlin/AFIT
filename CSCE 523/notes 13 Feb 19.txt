@@ -1,0 +1,67 @@
+Notes 13 Feb 19
+
+Plan
+
+State Space: Plan representation
+	2 ways to represent a planning problem
+		state space
+		plan space
+		
+	States rep'd as a conjunction of instantiated literals (no functions)
+	Goals described as a conjuction of literals (possibly with variables)
+	
+State Space Planner
+	Operators can have variables
+	Completely solves one goal then tacks on plan for next goal
+		Progression Planner (forward search with A*) - prunes if high fan in
+		Regression planner (backward search w/GPS) - prunes options if high fan out
+
+	General Problem Solver (GPS)
+		if goals in initial state then return true
+		choose difference d in goals between initial state & goals
+			(not finished)
+			
+(STRIPS) Stanford Research Institute Problem Solver	
+	
+Plan Space Planning
+	Node
+		State Space: World State
+		Plan Space: Partial plan
+	Operators
+		State Space: next plan in sequence
+		plan space: 
+			add link from existing action to open condition
+			add a plan step to fulfill open condition
+			order a step in the sequence
+	Gradually move from incomplete plans to complete plans
+		
+Partially ordered plans
+	
+Clobbering
+	A cloberrer is a potentially intervening step that destroys the condition
+	achieved by a causal link
+	
+	We can prevent this by orderging the cloberrer before the start
+	or after the end of the link
+	
+
+Hierarchical Planning	(ABSTRIPS) Abstract Strips
+	Plan at most abstract level
+		Ignore "less critical" predicates
+	Uing the abstract plan, fill in details
+	
+	
+Graphplan mutex constraints
+	Mutex (Mutually exclusive), assists graphplan in maintaining state
+		Inconsistent effect
+		Interference
+		Competing Needs
+
+Critical Path (shortest path)
+
+		
+	
+	
+
+	
+	

@@ -1,0 +1,5 @@
+CSCE	623		Statistical Machine Learning					B. Borghetti	TR	08:00:00	09:40:00	646	220	4	25-Mar-2019	06-Jun-2019
+CSCE	660		Mobile, Wireless, and SCADA Device Security		R. Dill			TR	13:00:00	14:40:00	646	212	4	25-Mar-2019	06-Jun-2019
+CSCE	660L	Mobile, Wireless, and SCADA Device Security Lab	R. Dill		TR	15:00:00	15:50:00	646	212	0	25-Mar-2019	06-Jun-2019
+CSCE	698		Research Seminar								A. Canciani		R	10:00:00	10:50:00	646	102	0	25-Mar-2019	06-Jun-2019
+CSCE	725		Reverse Engineering								P. Sweeney		TF	10:00:00	11:40:00	646	212	4	25-Mar-2019	06-Jun-2019

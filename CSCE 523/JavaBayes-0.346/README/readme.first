@@ -1,0 +1,74 @@
+JavaBayes
+Author: Fabio Cozman,
+<fgcozman@usp.br><http://www.cs.cmu.edu/~fgcozman/home.html>
+
+INTRODUCTION
+
+The JavaBayes system is a set of tools for inferences with 
+graphical models, containing a graphical editor, 
+a core inference engine and a parser. JavaBayes handles Bayesian
+networks and produces:
+	- posterior marginals.
+	- posterior expectations.
+	- configurations with maximum a posteriori probability.
+	- configurations with maximum a posteriori expectation.
+	- robustness (sensitivity) analysis based on convex sets
+		of distributions.
+The network editor is based on a graphical interface by Sreekanth Nagarajan.
+
+RUNNING THE SYSTEM
+
+To run JavaBayes, you must have a Java interpreter or a Java-compatible
+browser. A Java interpreter is required to run JavaBayes as a Java 
+application; a browser can only run Java applets, which do not interact 
+with the file system (you cannot load/save networks).
+
+Information about the distribution is available at
+http://www.cs.cmu.edu/~javabayes/
+
+You can download the system from this web site. As you unzip it 
+(or use gunzip and tar), you obtain the complete distribution: source
+code, network examples and the class files. You can run the class files
+directly going to the Classes directory, or you can change your CLASSPATH
+to run the system from any directory. For more instructions on the use
+of CLASSPATH (this is a Java thing), consult the web site above.
+Note that you do not have to download/use the JavaCC parser generator,
+as every file that is needed for parsing files is already included in
+the JavaBayes distribution.
+
+LEGALESE
+
+In what follows, "JavaBayes system" means the Java code
+obtained from http://www.cs.cmu.edu/~javabayes/
+To prevent misuse of the system, "JavaBayes system" 
+means source code, examples, documentation and the class
+files generated for the reference Java Virtual Machine. 
+Other types of executable/bytecode cannot be generated
+from the source code.
+
+The JavaBayes distribution is free software; you can
+redistribute it and/or modify it under the terms of the GNU General
+Public License as published by the Free Software Foundation (either
+version 2 of the License or, at your option, any later version), 
+provided that this notice and the name of the author appear in all 
+copies. Upon request to the author, some of the packages in the 
+JavaBayes distribution can be licensed under the GNU Lesser General
+Public License as published by the Free Software Foundation (either
+version 2 of the License, or (at your option) any later version).
+If you're using the software, please notify fgcozman@usp.br so
+that you can receive updates and patches. JavaBayes is distributed
+"as is", in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with the JavaBayes distribution. If not, write to the Free
+Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+CHEERS
+
+If you have suggestions or improvements
+feel free to send mail to fgcozman@usp.br
+
+	Have fun!
+
+		Fabio G. Cozman

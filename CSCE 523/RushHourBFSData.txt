@@ -1,0 +1,69 @@
+Started board 1
+Board: 1  0.001 seconds
+Nodes Visited: 1
+Move X0 East 5 spaces
+
+Started board 2
+Board: 2  0.004 seconds
+Nodes Visited: 32
+Move B1 West 2 spaces
+     A1 South 3 spaces
+     X0 East 5 spaces
+
+Started board 3
+Board: 3  0.005 seconds
+Nodes Visited: 121
+Move D1 East 1 spaces
+     O1 South 3 spaces
+     Q1 West 2 spaces
+     C1 North 1 spaces
+     X0 East 4 spaces
+
+Started board 4
+Board: 4  0.487 seconds
+Nodes Visited: 1620
+Move C1 South 1 spaces
+     B1 East 3 spaces
+     D1 North 2 spaces
+     E1 North 2 spaces
+     Q1 West 3 spaces
+     F1 West 3 spaces
+     E1 South 1 spaces
+     P1 South 1 spaces
+     C1 South 2 spaces
+     X0 East 5 spaces
+
+Started board 5
+Board: 5  0.99 seconds
+Nodes Visited: 2717
+Move P1 North 2 spaces
+     E1 East 1 spaces
+     O1 South 2 spaces
+     C1 East 2 spaces
+     B1 East 2 spaces
+     D1 North 2 spaces
+     X0 East 1 spaces
+     A1 South 4 spaces
+     X0 West 1 spaces
+     D1 South 2 spaces
+     C1 West 3 spaces
+     D1 North 1 spaces
+     B1 West 3 spaces
+     O1 North 2 spaces
+     E1 West 4 spaces
+     D1 South 1 spaces
+     O1 South 2 spaces
+     C1 East 3 spaces
+     D1 North 2 spaces
+     E1 East 1 spaces
+     X0 East 1 spaces
+     A1 North 3 spaces
+     E1 West 1 spaces
+     F1 North 1 spaces
+     R1 West 3 spaces
+     P1 South 3 spaces
+     O1 South 1 spaces
+     X0 East 4 spaces
+
+
+Process finished with exit code 0

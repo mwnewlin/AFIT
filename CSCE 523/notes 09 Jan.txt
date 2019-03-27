@@ -1,0 +1,47 @@
+Uniform Cost Search (Branch & Bound) (Slide 16)
+	Queueing fn is sort-by-cost-so-far
+	
+	UCS Example (17)
+		   sort g(n), will also have secondary constraint for ties
+	Open					Visited
+	  C				 		  C
+	  T1,B2,E2,O3,P5		  CT
+	  B2,E2,O3,P5			  CTB
+	  E2,P3,O3,P5,S5,R6		  CTBE
+	  O3,A3,P5,S5,R6,G7		  CTBEO
+	  A3,I4,P5,S5,N5,R6,G7	  CTBEOA
+	  I4,P5,S5,N5,R6,Z6,G7	  CTBEOAI
+	  P5,S5,N5,R6,Z6,G7		  CTBEOAIP
+	  S5,N5,F6,R6,G7,D8,L10	  CTBEOAIPS
+	    .
+		.
+		.
+		Z
+		
+Iterative Deepening Search (IDS)
+	DFS With Cutoff Bound
+	Repeated work decreases as branching factor increases
+	
+Avoid Repeating States
+	Don't go backwards
+	Don't create solution paths with cycles
+	Don't generate repeated states
+	
+Informed Search
+	Use information in and about the domain to guide our search strategy
+		Distance from start
+		Distance to goal
+		Etc
+		
+	g(n) Est cost from IS to node n
+		UCS does this
+	h(n) Est distance from node n to goal
+		h is our hueristic
+	f(n) = g(n) + h(n)
+		A* does this
+		
+	Methods that use h to guide search are called hueristic search methods
+Hill Climbing (Greedy Search)
+	Keeps track of only best state so far
+	If good hueristic, will lead to solution
+	If bad hueristic, then can prune away goals

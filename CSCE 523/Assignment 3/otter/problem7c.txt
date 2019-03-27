@@ -1,0 +1,32 @@
+set(ur_res).
+set(hyper_res).
+
+formula_list(usable).
+all x all y all z ((Sword(x) & Bow(y)) -> Magic(z)).
+all x (Poe(x) <-> -(IronKnuckle(x) | Octorock(x))).
+end_of_list.
+
+formula_list(sos).
+-Octorock(G).
+all x (-(IronKnuckle(x) & Magic(x))).
+Octorock(Z).
+Sword(L) & -Poe(L).
+Bow(Z).
+%Result From Problem a
+Magic(G).
+%Result from Problem b
+Poe(G).
+%What we know
+	%Zelda fought Octorock with the Bow
+	%Ganondorf Fought Poe with Magic 
+	%Link used the Sword
+%Inference
+(Octorock(Z) & Poe(G)) -> IronKnuckle(L).
+	
+%Negated Goal
+-IronKnuckle(L). 
+
+
+end_of_list.
+
+

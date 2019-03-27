@@ -1,0 +1,30 @@
+Notes 14 Jan 19
+
+Performance
+Environment
+Actuators
+Sensors
+
+Remember types of agents
+
+
+Hill Climbing search (used a lot in ML)
+
+Beam Search
+	Like Best First except n instead of infinity
+	If n=1 then Beam search is UCS
+	
+A* Search
+	Combines cost so far & hueristic evaluation
+	If hueristic is wrong, can mess up performance
+		- overestimating is worse than underestimating
+		
+UCS worst case is O(b^m)in T & S 
+Look at p.38 of slides for comparisons
+		
+IDA*
+	IDS guided by A*
+	Worst Case: Time - O(b^m), Space - O(m)
+		
+
+

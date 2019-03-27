@@ -1,0 +1,69 @@
+Constraint Satisfaction Problems
+
+	Set of variables X1,...,Xn
+	Set of constraints C1,...,Cm
+	Domain for each Xi has values Di = {vi1,...,vik}
+	A solution is a complete assignment that sats all constraints
+	
+	Binary CSP - Each constraint relates at most 2 variables
+	Higher order CSP's can be reduced to binary with intro of new variables
+	
+	n-queens and map coloring are standard CSP problems
+	
+	Common Examples
+		Assignment problems
+		Timetables
+		Scheduling
+	
+	Simple implementation is n!d^n in runtime
+		
+	Backtracking Search
+		Modified DFS
+		Always makes assignments in same order
+		Checks for violated constraints - Doesn't continue states that
+		violate constraints
+		Reduces branching factor to |Di|
+		Can solve up to 15-queens
+		
+	Forward Checking Search
+		Whenever variable  is assigned, delete any value from Y's domain
+		inconsistent with X
+		
+		Can solve up to 30 Queens
+		
+		
+	Hueristics for CSP's
+		Make more intelligent decisions on Values to choose for each variable
+		i.e. choose most constrained variable first
+		
+		Using hueristics can solve up to n=1000 queens
+		
+	Search Based CSP
+		Dumb search  can solve, but doesn't take advantage of knowledge
+		Backtracking fixes order of expansion
+		Forward Checking attempts to prune paths
+		Hueristics yields dramatic improvements
+		
+	Iterative Algs
+		Hill climbing & Simulated annealing typically work with complete states
+		To apply to CSP's
+			allow states  with unsatisfied constraints
+		Variable Selection
+			Randomly select a conflicted variable
+			
+	Min conflict Hueristics	
+		Choose value that violates fewest constraints (hill climb)
+		Performance
+			min-conflicts can solve arbitrary n-queens in almost constant time
+	
+	CSP Summary
+		CSP's defined by set of variables & constraints
+		Traditional Search is not efficient
+		Need hueristics
+		
+		
+		
+		
+		
+		
+		
