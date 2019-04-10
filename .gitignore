@@ -1,2 +1,4 @@
 *.mp4
 *.ppt*
+*.idea
+/.idea
