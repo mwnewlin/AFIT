@@ -2,4 +2,6 @@
 *.ppt*
 *.idea
 /.idea
-~*
+*.~*
+*/data*
+*/Data*
