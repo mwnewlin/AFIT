@@ -1,0 +1,46 @@
+       Native Runtime (Seconds)
+count                 24.000000
+mean               70310.375000
+std                   57.608735
+min                70251.000000
+25%                70268.000000
+50%                70288.500000
+75%                70317.500000
+max                70443.000000
+       Singularity Runtime (Seconds)
+count                      21.000000
+mean                    70311.000000
+std                        31.192948
+min                     70273.000000
+25%                     70290.000000
+50%                     70304.000000
+75%                     70324.000000
+max                     70401.000000
+After Sampling:
+
+       Native Runtime (Seconds)
+count                 20.000000
+mean               70317.150000
+std                   60.802766
+min                70251.000000
+25%                70272.500000
+50%                70301.500000
+75%                70334.250000
+max                70443.000000
+       Singularity Runtime (Seconds)
+count                      20.000000
+mean                    70312.900000
+std                        30.731263
+min                     70280.000000
+25%                     70291.500000
+50%                     70304.500000
+75%                     70326.000000
+max                     70401.000000
+p-value:         0.05
+
+degrees of freedom:      ~40
+
+Critical t-val:  2.021
+
+Ttest_relResult(statistic=0.30344973491680854, pvalue=0.7648449307144407)
+Ttest_indResult(statistic=0.2789844803314552, pvalue=0.7817694759628324)
