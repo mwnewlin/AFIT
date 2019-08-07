@@ -1,0 +1,10 @@
+UNHDS Mappings
+
+EnterpriseAppServer	456e7		284391
+
+Formula: Convert string to hex --> take first five nibbles --> convert to decimal
+
+for CompXXXXXX  --> remove Comp and keep number
+for IPXXXXX 	--> remove IP and keep number
+for PortXXXX 	--> remove Port and keep number
+
