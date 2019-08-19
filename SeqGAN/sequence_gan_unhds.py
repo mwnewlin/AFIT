@@ -34,7 +34,7 @@ dis_batch_size = 64
 #########################################################################################
 #  Basic Training Parameters
 #########################################################################################
-TOTAL_BATCH = 110
+TOTAL_BATCH = 200
 positive_file = 'save/uhnds_real.txt'
 negative_file = 'save/unhds_generator_sample.txt'
 eval_file = 'save/unhds_eval_file.txt'
