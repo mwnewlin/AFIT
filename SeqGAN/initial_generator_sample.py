@@ -17,7 +17,7 @@ real_filename = 'save/netflow_02_chunk_0.txt'
 
 real_df = pd.read_csv(real_filename, names=['Time', 'Duration', 'SrcDevice', 
             'DstDevice', 'Protocol', 'SrcPort', 'DstPort', 'SrcPackets', 'DstPackets', 
-            'SrcBytes', 'DstBytes'], sep=' ')
+            'SrcBytes', 'DstBytes'], sep=' ', dtype=np.int32)
 
 desc = real_df.describe()
 
