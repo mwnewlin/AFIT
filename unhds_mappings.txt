@@ -1,6 +1,9 @@
 UNHDS Mappings
 
 EnterpriseAppServer	456e7		284391
+ActiveDirectory				267831
+VPN					56566
+VSCanner		56536		353590
 
 Formula: Convert string to hex --> take first five nibbles --> convert to decimal
 
