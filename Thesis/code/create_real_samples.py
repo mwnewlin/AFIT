@@ -35,10 +35,10 @@ original_netflow_file = 'netflow_day-02'
 def create_real_samples(directory='network', original_file=original_netflow_file, num_samples=1000, sample_length=1000, random_seed=69):
     curr_chunk=0
     if directory == 'network':
-        for chunk in pd.read_csv(original_netflow_data_dir+original_file, names=['Time', 'Duration', 'SrcDevice', 
+        for chunk in pd.read_csv(original_netflow_data_dir+original_file, names=['Duration', 'SrcDevice', 
             'DstDevice', 'Protocol', 'SrcPort', 'DstPort', 'SrcPackets', 'DstPackets', 
-            'SrcBytes', 'DstBytes'], chunksize=sample_length):
-            chunk=chunk.drop(['Time'], axis=1)
+            'SrcBytes', 'DstBytes'], chunksize=sample_length, sep=' '):
+            
             real_df = chunk
             # Replace Text from original file
             #real_df = real_df.replace(to_replace=[r"^Comp",r"^IP", r"Port"], 

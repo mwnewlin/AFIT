@@ -117,15 +117,15 @@ generate_random_samples(sample_length=100, num_samples=10000)
 print("Finished with sample length 100.")
         
 # Generate 10000 samples of length 1000
-#generate_random_samples(sample_length=1000, num_samples=10000)
-#print("Finished with sample length 1000.")
+generate_random_samples(sample_length=1000, num_samples=10000)
+print("Finished with sample length 1000.")
 
 # Generate 2000 samples of length 10000
-#generate_random_samples(sample_length=10000, num_samples=2000)
-#print("Finished with sample length 10000.")
+generate_random_samples(sample_length=10000, num_samples=2000)
+print("Finished with sample length 10000.")
 
 # Generate 1160 samples of length 10000
-#generate_random_samples(sample_length=100000, num_samples=1160)
-#print("Finished with sample length 100000.")
+generate_random_samples(sample_length=100000, num_samples=1160)
+print("Finished with sample length 100000.")
 #print("All Done.")
 
