@@ -330,7 +330,7 @@ def score_set(S1, S2, sample_length, num_samples, metric='lp', p=2, r=2, standar
             Mxy = distance(S1[x], G1[x], sqrt=True)
             d = mmd(Mxx, Mxy, Myy, sigma=1)
             dist_matrix = np.append(dist_matrix, d)
-    return np.mean(dist_matrix)   
+    return np.mean(dist_matrix), np.std(dist_matrix), dist_matrix   
 
 """
     Score two sets of samples based on a given metric, treating each collection
