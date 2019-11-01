@@ -19,6 +19,7 @@ from scipy.spatial.distance import cdist
 from scipy.stats import wasserstein_distance as wasserstein
 
 from scipy.stats import norm, entropy
+from scipy.stats.mstats import gmean
 
 
 """
@@ -83,10 +84,16 @@ def cosine_similarity(X,Y):
     
 """
     Calculates the Mahalanobis distance between 2 matrices X and Y
-    In order to ensure non-singularity for arbitrary matrices X and Y
-    Actual Mahalanobis Distance calculations are between X*X^T and Y*Y^T
 """  
 def mahalanobis_distance(X,Y):
+    X = np.array(X)
+    Y = np.array(Y)
+    stack = np.vstack([X, Y])
+    VI = np.linalg.pinv(np.cov(stack, rowvar=False))
+    d_mat = cdist(X,Y, metric='mahalanobis', VI=VI)
+    return np.trace(d_mat)
+
+def alt_mahalanobis(X,Y):
     X = np.array(X)
     Y = np.array(Y)
     prob_x, prob_y = generate_probs(X,Y)
@@ -99,14 +106,6 @@ def mahalanobis_distance(X,Y):
     stack = np.vstack([prob_x, prob_y])
     VI = np.linalg.pinv(np.cov(stack, rowvar=False))
     mahalanobis = cdist(prob_x, prob_y, 'mahalanobis', VI=VI)
-    return np.mean(np.nan_to_num(mahalanobis))
-
-def alt_mahalanobis(X,Y):
-    X = np.array(X)
-    Y = np.array(Y)
-    stack = np.vstack([X, Y])
-    VI = np.linalg.pinv(np.cov(stack, rowvar=False))
-    mahalanobis = cdist(X, Y, 'mahalanobis', VI=VI)
     return np.mean(np.nan_to_num(mahalanobis))
 
 """
@@ -130,18 +129,33 @@ def chi_squared_dist(X,Y):
 """
     Calculate the Wasserstein Distance between Matrices X and Y
 """
+
+def KL(P,Q):
+    """ Epsilon is used here to avoid conditional code for
+    checking that neither P nor Q is equal to 0. """
+    epsilon = 0.00001
+
+    # You may want to instead make copies to avoid changing the np arrays.
+    P = P+epsilon
+    Q = Q+epsilon
+
+    divergence = np.sum(np.multiply(P,np.log(P/Q)))
+    return divergence
+
+
+
 def wasserstein_dist(X,Y):
     X = np.array(X)
     Y = np.array(Y)
-    x_prob, y_prob = generate_probs(X,Y)
+    #x_prob, y_prob = generate_probs(X,Y)
     num_cols = X.shape[1]
     wass_dists = np.array([])
     for x in range(num_cols):
-        u = x_prob[:, x]
-        v = y_prob[:, x]
+        u = X[:, x]
+        v = Y[:, x]
         d = wasserstein(u,v)
         wass_dists = np.append(wass_dists, d)
-    return np.mean(np.nan_to_num(wass_dists))
+    return gmean(np.where(wass_dists==0,1,wass_dists))
 
 """
     Calculates the Difference in standardized entropy between two matrices X and Y
