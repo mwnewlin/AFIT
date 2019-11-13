@@ -71,6 +71,8 @@ def l_p_distance(X,Y,p=2,r=2):
 
 """
     Calculates the cosine similarity between two matrices X and Y
+    0 --> X and Y are the same
+    1 --> X and Y are orthogonal
 """
 def cosine_similarity(X,Y):
     X = np.array(X)
@@ -80,7 +82,9 @@ def cosine_similarity(X,Y):
     for i in range(num_cols):
         cos_sim = cosine(X[:,i], Y[:,i])
         cos_sims = np.append(cos_sims, cos_sim)
-    return np.mean(np.nan_to_num(cos_sims))
+        cos_sims = np.nan_to_num(cos_sims)
+        cos_sims = np.where(cos_sims > 1, 1, cos_sims)
+    return np.mean(cos_sims)
     
 """
     Calculates the Mahalanobis distance between 2 matrices X and Y
@@ -136,10 +140,11 @@ def KL(P,Q):
     epsilon = 0.00001
 
     # You may want to instead make copies to avoid changing the np arrays.
-    P = P+epsilon
-    Q = Q+epsilon
+    P_prime = np.where(P==0, P+epsilon, P)
+    Q_prime = np.where(Q==0, Q+epsilon, Q)
+    
 
-    divergence = np.sum(np.multiply(P,np.log(P/Q)))
+    divergence = np.sum(np.multiply(P_prime,np.log(P_prime/Q_prime)))
     return divergence
 
 
@@ -240,7 +245,7 @@ def mmd(Mxx,Mxy, Myy, sigma):
     Mxy = np.nan_to_num(np.exp(np.divide(-Mxy,mu*2*sigma*sigma)))
     Myy = np.nan_to_num(np.exp(np.divide(-Myy,mu*2*sigma*sigma)))
     a = Mxx.mean() + Myy.mean() - 2*Mxy.mean()
-    mmd = np.sqrt(np.maximum(a,0))
+    mmd = np.sqrt(np.abs(a))
     return mmd
 
 """
