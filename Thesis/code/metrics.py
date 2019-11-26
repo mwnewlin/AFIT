@@ -20,6 +20,7 @@ from scipy.stats import wasserstein_distance as wasserstein
 
 from scipy.stats import norm, entropy
 from scipy.stats.mstats import gmean
+import time
 
 
 """
@@ -352,33 +353,74 @@ def score_set(S1, S2, sample_length, num_samples, metric='lp', p=2, r=2, standar
     return np.mean(dist_matrix), np.std(dist_matrix), dist_matrix   
 
 """
-    Score two sets of samples based on a given metric, treating each collection
-    as a giant sample
+    Score two sets of samples based on a given metric
 """
-def score_set_all(S1, S2, sample_length, num_samples, metric='lp', p=2, r=2, standardized=True):
+def time_score_set(S1, S2, sample_length, num_samples, metric='lp', p=2, r=2, standardized=True, G1=None, G2=None):
     dist_matrix = np.array([])
+    t_start = -1.0
+    t_end = -1.0
     if metric == 'lp':
-        d = l_p_distance(S1, S2, p=p, r=r)
-        dist_matrix = np.append(dist_matrix, d)
+        t_start = time.time()
+        for x in range(num_samples):
+            d = l_p_distance(S1[x], S2[x], p=p, r=r)
+            dist_matrix = np.append(dist_matrix, d)
+        t_end = time.time()
     elif metric == 'cosine':
-        d = cosine_similarity(S1, S2)
-        dist_matrix = np.append(dist_matrix, d)
+        t_start = time.time()
+        for x in range(num_samples):
+            d = cosine_similarity(S1[x], S2[x])
+            dist_matrix = np.append(dist_matrix, d)
+        t_end = time.time()
     elif metric == 'mahalanobis':
-        d = mahalanobis_distance(S1, S2)
-        dist_matrix = np.append(dist_matrix, d)
+        t_start = time.time()
+        for x in range(num_samples):
+            d = mahalanobis_distance(S1[x], S2[x])
+            dist_matrix = np.append(dist_matrix, d)
+        t_end = time.time()
     elif metric == 'chi_squared':
-        d = chi_squared_dist(S1, S2)
-        dist_matrix = np.append(dist_matrix, d)
+        t_start = time.time()
+        for x in range(num_samples):
+            d = chi_squared_dist(S1[x], S2[x])
+            dist_matrix = np.append(dist_matrix, d)
+        t_end = time.time()
     elif metric == 'wasserstein':
-        d = wasserstein_dist(S1, S2)
-        dist_matrix = np.append(dist_matrix, d)
+        t_start = time.time()
+        for x in range(num_samples):
+            d = wasserstein_dist(S1[x], S2[x])
+            dist_matrix = np.append(dist_matrix, d)
+        t_end = time.time()
     elif metric == 'fid':
-        d = fid(S1, S2)
-        dist_matrix = np.append(dist_matrix, d)
+        t_start = time.time()
+        for x in range(num_samples):
+            d = fid(S1[x], S2[x])
+            dist_matrix = np.append(dist_matrix, d)
+        t_end = time.time()
     elif metric == 'entropy':
-        d = calc_entropy(S1, S2, sample_length=sample_length*num_samples, standardized=standardized)
-        dist_matrix = np.append(dist_matrix, d)
+        t_start = time.time()
+        for x in range(num_samples):
+            d = calc_entropy(S1[x], S2[x], sample_length=sample_length, standardized=standardized)
+            dist_matrix = np.append(dist_matrix, d)
+        t_end = time.time()
     elif metric == 'perplexity':
-        d = calc_perplexity(S1, S2, sample_length=sample_length*num_samples, standardized=standardized)
-        dist_matrix = np.append(dist_matrix, d)
-    return np.mean(dist_matrix)   
+        t_start = time.time()
+        for x in range(num_samples):
+            d = calc_perplexity(S1[x], S2[x], sample_length=sample_length, standardized=standardized)
+            dist_matrix = np.append(dist_matrix, d)
+        t_end = time.time()
+    elif metric == 'bd':
+        t_start = time.time()
+        for x in range(num_samples):
+            d = bhattacharyya(S1[x], S2[x])
+            dist_matrix = np.append(dist_matrix, d)
+        t_end = time.time()
+    elif metric == 'mmd':
+        t_start = time.time()
+        for x in range(num_samples):
+            Mxx = distance(S1[x],S2[x], sqrt=True)
+            Myy = distance(G1[x],G2[x], sqrt=True)
+            Mxy = distance(S1[x], G1[x], sqrt=True)
+            d = mmd(Mxx, Mxy, Myy, sigma=1)
+            dist_matrix = np.append(dist_matrix, d)
+        t_end = time.time()
+    t_diff = t_end - t_start
+    return dist_matrix, t_diff   
