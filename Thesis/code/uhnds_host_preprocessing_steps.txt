@@ -1,0 +1,5 @@
+Read in with filename only 
+drop 'Time' column
+Replace NaN with "none" - json_data = json_data.replace(to_replace=["nan"], value='none', regex=False)
+Replace '$' - json_data - json_data.replace(to_replace=[r"[\$]+"], value='', regex=True)
+Replace 0x0 with "success" - json_data = json_data.replace(to_replace=["0x0"], value='success', regex=False)

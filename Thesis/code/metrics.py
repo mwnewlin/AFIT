@@ -135,10 +135,10 @@ def chi_squared_dist(X,Y):
     Calculate the Wasserstein Distance between Matrices X and Y
 """
 
-def KL(P,Q):
+def KL(P,Q, eps=1e-5):
     """ Epsilon is used here to avoid conditional code for
     checking that neither P nor Q is equal to 0. """
-    epsilon = 0.00001
+    epsilon = eps
 
     # You may want to instead make copies to avoid changing the np arrays.
     P_prime = np.where(P==0, P+epsilon, P)
