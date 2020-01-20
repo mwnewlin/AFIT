@@ -59,6 +59,48 @@ real_file = 'netflow_day-02'
 N_COLS = 10
 np.seterr(all='ignore')
 
+def load_real_host_sample(sample_num, sample_length=1000):
+    directory = '/run/media/mnewlin/_userdata/uhnds/host/unconverted/real/tfidf/'
+    real_host_data_dir = directory + 'samples_{}/'.format(sample_length)
+        
+    load_file = real_host_data_dir + 'tfidf_sample_{}.csv'.format(sample_num)
+    df = pd.read_csv(load_file, dtype=np.float64)
+    data = np.array(df)
+    return data
+
+def load_fake_host_sample(sample_num, sample_length=1000,dist='uniform'):
+    directory = '/run/media/mnewlin/_userdata/uhnds/host/unconverted/fake/{}/'.format(dist)
+    
+    fake_host_data_dir = directory + 'samples_{}/'.format(sample_length)
+        
+    load_file = fake_host_data_dir + 'tfidf_sample_{}.csv'.format(sample_num)
+    df = pd.read_csv(load_file, dtype=np.float64)
+    data = np.array(df)
+    return data
+
+def load_n_host_samples(real=True, sample_length=100, num_samples=100, random_state=69, dist='uniform'):
+
+    sample_set = np.array([])
+    sample_range= 10000
+    random.seed(a=random_state)
+    sample_list = random.sample(range(sample_range), num_samples)
+    if real:
+        for num in sample_list:
+            data = load_real_host_sample(sample_length=sample_length, sample_num=num)
+            sample_set = np.append(sample_set, data)
+    else:
+        for num in sample_list:
+            data = None
+            if dist == 'uniform':
+                data = load_fake_host_sample(sample_length=sample_length, sample_num=num, dist='uniform')
+            else:
+                data = load_fake_host_sample(sample_length=sample_length, sample_num=num, dist='normal')
+            sample_set = np.append(sample_set, data)
+    sample_set = np.reshape(sample_set, newshape=(num_samples, sample_length, N_COLS))
+        
+    return sample_set
+
+
 """
     Function to read in a single real sample from a given directory based
     on the desired length of the sample.
@@ -465,7 +507,7 @@ for random_state in random_seeds:
                                    random_state=random_state)
     real_data_untrans = real_data_untrans.append(real_data)
     fake_data_untrans = fake_data_untrans.append(fake_data)
-outdir = '/home/mnewlin/git/AFIT/Thesis/code/results/untrans'
+outdir = '/home/mnewlin/git/AFIT/Thesis/code/results/untrans/'
 real_data_untrans.to_csv(outdir+'real_data_exp.csv')
 fake_data_untrans.to_csv(outdir+'fake_data_exp.csv')
 print("Untransformed")

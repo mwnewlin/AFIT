@@ -57,6 +57,7 @@ real_dir = '/run/media/mnewlin/_userdata/uhnds/network/converted/real/'
 real_file = 'netflow_day-02'
 # Dataset dependent number of cols
 N_COLS = 10
+N_HOST_COLS = 10
 np.seterr(all='ignore')
 
 """
@@ -132,6 +133,48 @@ def load_n_samples(real=True, sample_length=100, num_samples=100, random_state=6
             sample_set = np.append(sample_set, data)
     sample_set = np.reshape(sample_set, newshape=(num_samples, sample_length, N_COLS))
     return sample_set
+
+def load_real_host_sample(sample_num, sample_length=1000):
+    directory = '/run/media/mnewlin/_userdata/uhnds/host/unconverted/real/tfidf/'
+    real_host_data_dir = directory + 'samples_{}/'.format(sample_length)
+        
+    load_file = real_host_data_dir + 'tfidf_sample_{}.csv'.format(sample_num)
+    df = pd.read_csv(load_file, dtype=np.float64)
+    data = np.array(df)
+    return data
+
+def load_fake_host_sample(sample_num, sample_length=1000,dist='uniform'):
+    directory = '/run/media/mnewlin/_userdata/uhnds/host/unconverted/fake/{}/'.format(dist)
+    
+    fake_host_data_dir = directory + 'samples_{}/'.format(sample_length)
+        
+    load_file = fake_host_data_dir + 'tfidf_sample_{}.csv'.format(sample_num)
+    df = pd.read_csv(load_file, dtype=np.float64)
+    data = np.array(df)
+    return data
+
+def load_n_host_samples(real=True, sample_length=100, num_samples=100, random_state=69, dist='uniform'):
+
+    sample_set = np.array([])
+    sample_range= 10000
+    random.seed(a=random_state)
+    sample_list = random.sample(range(sample_range), num_samples)
+    if real:
+        for num in sample_list:
+            data = load_real_host_sample(sample_length=sample_length, sample_num=num)
+            sample_set = np.append(sample_set, data)
+    else:
+        for num in sample_list:
+            data = None
+            if dist == 'uniform':
+                data = load_fake_host_sample(sample_length=sample_length, sample_num=num, dist='uniform')
+            else:
+                data = load_fake_host_sample(sample_length=sample_length, sample_num=num, dist='normal')
+            sample_set = np.append(sample_set, data)
+    sample_set = np.reshape(sample_set, newshape=(num_samples, sample_length, N_COLS))
+        
+    return sample_set
+
 """
     Function to create a mix of real and fake data
 """
@@ -454,7 +497,8 @@ def run_fft(num_samples=1000, sample_length=1000, random_state=69):
 """
 num_sample_list = [5*(n+1)*100 for n in range(10)]
 num_sample_list.insert(0,100)
-
+# Adding Additional sample sizes up to 10k
+#num_sample_list = [5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000]
 NUM_SAMPLES = 1000
 SAMPLE_LENGTH = 1000
 RANDOM_STATE = 10
@@ -462,7 +506,7 @@ RANDOM_STATE = 10
 random_seeds = [1, 13, 42, 21, 33, 69, 56, 12, 27, 99]
 real_data_untrans = pd.DataFrame()
 fake_data_untrans = pd.DataFrame()
-
+t_start = time.time()
 for num_samples in num_sample_list:
     for random_state in random_seeds:
         real_data, fake_data = run_untrans(num_samples=num_samples, sample_length=SAMPLE_LENGTH,
@@ -486,7 +530,9 @@ for num_samples in num_sample_list:
     real_data_sqrt.to_csv(outdir+'real_data_exp_eff_{}.csv'.format(num_samples))
     fake_data_sqrt.to_csv(outdir+'fake_data_exp_eff_{}.csv'.format(num_samples))
 print("Square Root")
-
+t_elapsed = time.time()
+t_so_far = t_elapsed - t_start
+print("Total time elapsed: {:.2f}".format(t_so_far))
 real_data_log = pd.DataFrame()
 fake_data_log = pd.DataFrame()
 for num_samples in num_sample_list:
@@ -499,6 +545,9 @@ for num_samples in num_sample_list:
     real_data_log.to_csv(outdir+'real_data_exp_eff_{}.csv'.format(num_samples))
     fake_data_log.to_csv(outdir+'fake_data_exp_eff_{}.csv'.format(num_samples))
 print("Log")
+t_elapsed = time.time()
+t_so_far = t_elapsed - t_start
+print("Total time elapsed: {:.2f}".format(t_so_far))
 
 real_data_pca = pd.DataFrame()
 fake_data_pca = pd.DataFrame()
@@ -512,6 +561,9 @@ for num_samples in num_sample_list:
     real_data_pca.to_csv(outdir+'real_data_exp_eff_{}.csv'.format(num_samples))
     fake_data_pca.to_csv(outdir+'fake_data_exp_eff_{}.csv'.format(num_samples))
 print("PCA")
+t_elapsed = time.time()
+t_so_far = t_elapsed - t_start
+print("Total time elapsed: {:.2f}".format(t_so_far))
 
 real_data_fft = pd.DataFrame()
 fake_data_fft = pd.DataFrame()
@@ -525,3 +577,7 @@ for num_samples in num_sample_list:
     real_data_fft.to_csv(outdir+'real_data_exp_eff_{}.csv'.format(num_samples))
     fake_data_fft.to_csv(outdir+'fake_data_exp_eff_{}.csv'.format(num_samples))
 print("FFT")
+
+t_end = time.time()
+t_diff = t_end - t_start
+print("Total time: {:.2f}".format(t_diff))
