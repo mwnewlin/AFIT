@@ -15,8 +15,10 @@ from scipy.linalg import sqrtm
 from scipy.spatial.distance import pdist
 from scipy.spatial.distance import cosine
 from scipy.spatial.distance import cdist
+#from scipy.spatial.distance import jensonshannon as js
 
 from scipy.stats import wasserstein_distance as wasserstein
+from scipy.special import rel_entr
 
 from scipy.stats import norm, entropy
 from scipy.stats.mstats import gmean
@@ -148,7 +150,62 @@ def KL(P,Q, eps=1e-5):
     divergence = np.sum(np.multiply(P_prime,np.log(P_prime/Q_prime)))
     return divergence
 
-
+"""
+    Wrapper function for scipy jenson shannon divergence
+    https://scipy.github.io/devdocs/generated/scipy.spatial.distance.jensenshannon.html
+    As of writing this file, this is still in a dev version of scipy so 
+    this function was copied out of scipy source github at
+    https://github.com/scipy/scipy/blob/089e3b2/scipy/spatial/distance.py#L1235-L1292
+"""
+def jensenshannon(p, q, base=None):
+    """
+    Compute the Jensen-Shannon distance (metric) between
+    two 1-D probability arrays. This is the square root
+    of the Jensen-Shannon divergence.
+    The Jensen-Shannon distance between two probability
+    vectors `p` and `q` is defined as,
+    .. math::
+       \\sqrt{\\frac{D(p \\parallel m) + D(q \\parallel m)}{2}}
+    where :math:`m` is the pointwise mean of :math:`p` and :math:`q`
+    and :math:`D` is the Kullback-Leibler divergence.
+    This routine will normalize `p` and `q` if they don't sum to 1.0.
+    Parameters
+    ----------
+    p : (N,) array_like
+        left probability vector
+    q : (N,) array_like
+        right probability vector
+    base : double, optional
+        the base of the logarithm used to compute the output
+        if not given, then the routine uses the default base of
+        scipy.stats.entropy.
+    Returns
+    -------
+    js : double
+        The Jensen-Shannon distance between `p` and `q`
+    .. versionadded:: 1.2.0
+    Examples
+    --------
+    >>> from scipy.spatial import distance
+    >>> distance.jensenshannon([1.0, 0.0, 0.0], [0.0, 1.0, 0.0], 2.0)
+    1.0
+    >>> distance.jensenshannon([1.0, 0.0], [0.5, 0.5])
+    0.46450140402245893
+    >>> distance.jensenshannon([1.0, 0.0, 0.0], [1.0, 0.0, 0.0])
+    0.0
+    """
+    p = np.asarray(p)
+    q = np.asarray(q)
+    p = p / np.sum(p, axis=0)
+    q = q / np.sum(q, axis=0)
+    m = (p + q) / 2.0
+    left = rel_entr(p, m)
+    right = rel_entr(q, m)
+    js = np.sum(left, axis=0) + np.sum(right, axis=0)
+    if base is not None:
+        js /= np.log(base)
+    return np.sqrt(js / 2.0)
+    
 
 def wasserstein_dist(X,Y):
     X = np.array(X)
@@ -266,41 +323,6 @@ def bhattacharyya(X, Y):
         dist = np.append(dist, bd)
     return np.mean(np.nan_to_num(dist))
 
-"""
-    Scores a set of samples pairwise based on the given metric
-"""
-def score_samples(data, sample_length, num_samples, metric='lp', p=2, r=2):
-    # Reshape data into 3d array of n*l*w from 2d array of nl*w
-    sample_list = np.reshape(np.array(data), (num_samples, sample_length, data.shape[1]))
-    dist_matrix = np.zeros((num_samples, num_samples))
-    if metric == 'lp':
-        # Do pairwise metrics
-        for i in range(num_samples):
-            for j in range(num_samples):
-                d = l_p_distance(sample_list[i], sample_list[j], p=p, r=r)
-                dist_matrix[i,j] = d
-    elif metric == 'cosine':
-        for i in range(num_samples):
-            for j in range(num_samples):
-                d = cosine_similarity(sample_list[i], sample_list[j])
-                dist_matrix[i,j] = d
-    elif metric == 'mahalanobis':
-        for i in range(num_samples):
-            for j in range(num_samples):
-                if i != j:
-                    d = mahalanobis_distance(sample_list[i], sample_list[j])
-                    dist_matrix[i,j] = d
-    elif metric == 'chi_squared':
-        for i in range(num_samples):
-            for j in range(num_samples):
-                d = chi_squared_dist(sample_list[i], sample_list[j])
-                dist_matrix[i,j] = d
-    elif metric == 'wasserstein':
-        for i in range(num_samples):
-            for j in range(num_samples):
-                d = wasserstein_dist(sample_list[i], sample_list[j])
-                dist_matrix[i,j] = d
-    return np.sum(dist_matrix)
 
 """
     Score two sets of samples based on a given metric
