@@ -157,7 +157,7 @@ def KL(P,Q, eps=1e-5):
     this function was copied out of scipy source github at
     https://github.com/scipy/scipy/blob/089e3b2/scipy/spatial/distance.py#L1235-L1292
 """
-def jensenshannon(p, q, base=None):
+def jensenshannon(p, q, base=2):
     """
     Compute the Jensen-Shannon distance (metric) between
     two 1-D probability arrays. This is the square root
