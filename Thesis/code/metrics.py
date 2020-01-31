@@ -151,11 +151,13 @@ def KL(P,Q, eps=1e-5):
     return divergence
 
 """
-    Wrapper function for scipy jenson shannon divergence
+    Function for scipy jenson shannon divergence
     https://scipy.github.io/devdocs/generated/scipy.spatial.distance.jensenshannon.html
     As of writing this file, this is still in a dev version of scipy so 
     this function was copied out of scipy source github at
     https://github.com/scipy/scipy/blob/089e3b2/scipy/spatial/distance.py#L1235-L1292
+    
+    Original code has base=None but I use base=2 so that JSD bounded between 0 and 1
 """
 def jensenshannon(p, q, base=2):
     """
